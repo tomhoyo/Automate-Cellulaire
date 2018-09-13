@@ -12,18 +12,18 @@ public class Controller {
 	private static final int nbrGeneration = 100;
 	
 	Map map;
-	AffichageConsole view;
+	AffichageConsole console;
 	Fenetre fenetre;
 	
 	public Controller() throws IOException {
-		view = new AffichageConsole();
+		console = new AffichageConsole();
 		fenetre = new Fenetre();
 		map = new Map(InstancierMap());
-		view.AfficherConsolle(map.getMap());
+		console.AfficherConsolle(map.getMap());
 		
 		for(int i = 0; i < nbrGeneration; i++) {
 			map.setMap(ControlerMap());
-			view.AfficherConsolle(map.getMap());
+			console.AfficherConsolle(map.getMap());
 		}
 		
 	}
