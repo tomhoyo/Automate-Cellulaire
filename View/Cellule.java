@@ -6,15 +6,20 @@ import javax.swing.JPanel;
 public class Cellule extends JPanel {
 
 	
-	private boolean bool[][] = new boolean[20][20];
+	private boolean bool[][];
+	int longueur;
+	int largeur;
 	
-	public Cellule(boolean tab[][]) {
+	public Cellule(boolean tab[][], int y, int x) {
+		longueur = y;
+		largeur = x;
+		bool = new boolean[longueur][largeur];
 		setBool(tab);
 	}
 
 	public void paintComponent(Graphics g){
-		for(int y = 0; y <= 19; y++) {
-    		for(int x = 0; x <= 19; x++) {
+		for(int y = 0; y <= longueur-1; y++) {
+    		for(int x = 0; x <= largeur-1; x++) {
     			if(getBool()[x][y] == true) {
         		    g.setColor(Color.GREEN);          
     			}else if(getBool()[x][y] == false) {
@@ -22,12 +27,10 @@ public class Cellule extends JPanel {
 
     			}
 
-    		    g.fillRect(y * 22 + 2, x * 22 + 2, 20, 20);
+    		    g.fillRect(y+2, x+2, 1, 1);
 
     		}
     	} 
-		//this.repaint();
-		this.revalidate();
 	}
 
 	boolean[][] getBool() {

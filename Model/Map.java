@@ -1,13 +1,14 @@
 package Model;
 
 public class Map {
-	 private static final int longueur = 20;
-	 private static final int largeur = 20;
+	 
 
-	private boolean map[][] = new boolean[longueur][largeur];
+	private boolean map[][];
 	
-	public Map(boolean tab[][]) {
+	public Map(boolean tab[][], int longueur, int largeur) {
+		map = new boolean[longueur][largeur];
 		setMap(tab);
+
 	}
 
 	public boolean[][] getMap() {

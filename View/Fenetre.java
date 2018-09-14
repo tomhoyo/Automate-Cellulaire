@@ -3,29 +3,34 @@ package View;
 import javax.swing.JFrame;
 
 public class Fenetre extends JFrame{
+	
+	int longueur;
+	int largeur;
+	int cadreLongueur;
+	int cadreLargeur;
 
-	public Fenetre(boolean tab[][]) {
+	public Fenetre(boolean tab[][], int y, int x) {
+		longueur = y;
+		largeur = x;
+
+
 		
-		 //Définit un titre pour notre fenêtre
 	    this.setTitle("Automate Cellulaire");
-	    //Définit sa taille : 400 pixels de large et 100 pixels de haut
-	    this.setSize(458, 481);
-	    //Nous demandons maintenant à notre objet de se positionner au centre
+	    this.setSize(largeur+20, longueur+43);
 	    this.setLocationRelativeTo(null);
-	    //Termine le processus lorsqu'on clique sur la croix rouge
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setContentPane(new Cellule(tab));
+	    this.setContentPane(new Cellule(tab, longueur, largeur));
 	    this.setVisible(true);
 
 	}
 	
 	public void AfficherEvolution(boolean tab[][]) {
 		try {
-	        Thread.sleep(200);
+	        Thread.sleep(300);
 	      } catch (InterruptedException e) {
 	        e.printStackTrace();
 	      }
-	    this.setContentPane(new Cellule(tab));
+	    this.setContentPane(new Cellule(tab, longueur, largeur));
 	    ActualiserFenetre();
 	}
 
