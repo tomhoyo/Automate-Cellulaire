@@ -4,7 +4,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
  
 public class Cellule extends JPanel {
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4751793395101789708L;
 	private boolean bool[][];
 	private boolean tabBool[][];
 	int longueur;
@@ -24,7 +28,8 @@ public class Cellule extends JPanel {
 		this.longueur = longueur;
 		this.largeur = largeur;
 		this.bool = new boolean[longueur][largeur];
-		setTabBool(new boolean[longueur][largeur]);
+		this.tabBool = new boolean[longueur][largeur];
+		
 		setBool(tab);
 	}
 
@@ -32,17 +37,14 @@ public class Cellule extends JPanel {
 		for(int y = 0; y <= longueur-1; y++) {
     		for(int x = 0; x <= largeur-1; x++) {
 	    		if(getBool()[y][x] != getTabBool()[y][x] ) {
-	    			if(bool[x][y] == true) {
-    				
-		    			/*if(getBool()[x][y] == true) {
-		        		    g.setColor(Color.BLACK);          
+    			
+		    			if(getBool()[x][y] == true) {
+		        		    g.setColor(Color.WHITE);          
 		    			}else if(getBool()[x][y] == false) {
 		        		    g.setColor(Color.BLACK);          
-		    			}*/
+		    			}
 		    		    g.fillRect(y * ecartCelluleHorizontal + 2, x * ecartCelluleVertical+ 2,
 		    		    		largeurCellule, longueurCellule);
-		    		    
-    		    	}
 				}
 			}
     	} 

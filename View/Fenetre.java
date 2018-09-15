@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 
 public class Fenetre extends JFrame{
 	
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2542229582075632318L;
 		int longueur;
 		int largeur;
 		int cadreLongueur;
@@ -32,7 +36,7 @@ public class Fenetre extends JFrame{
 		this.tempsDAttente = tempsDAttente;
 		
 	    this.setTitle("Automate Cellulaire");
-	    this.setSize(largeur+20, longueur+43);
+	    this.setSize(1366, 768);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setContentPane(getCell());
@@ -41,22 +45,23 @@ public class Fenetre extends JFrame{
 	}
 	
 	public void AfficherEvolution(boolean tab[][]) {
-	    cell.setBackground(Color.WHITE);        
 		try {
 	        Thread.sleep(tempsDAttente);
 	      } catch (InterruptedException e) {
 	        e.printStackTrace();
 	      }
-	    this.setContentPane(new Cellule(tab, longueur, largeur, longueurCellule, 
-	    								largeurCellule, ecartCelluleHorizontal, ecartCelluleVertical));
-
+		
+	    cell.setBool(tab);
 	    ActualiserFenetre();
 	}
 
 
 	private void ActualiserFenetre() {
-	    this.setVisible(false);
-	    this.setVisible(true);
+		cell.repaint();
+		
+	    //this.setVisible(false);
+	    this.setBackground(Color.BLACK);        
+	   // this.setVisible(true);
 	}
 
 	public Cellule getCell() {
