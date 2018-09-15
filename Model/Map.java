@@ -8,7 +8,6 @@ public class Map {
 	public Map(boolean tab[][], int longueur, int largeur) {
 		map = new boolean[longueur][largeur];
 		setMap(tab);
-
 	}
 
 	public boolean[][] getMap() {
