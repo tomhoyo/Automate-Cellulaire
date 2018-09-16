@@ -8,18 +8,17 @@ public class Controller {
 	//affecte le controller
 	private static final int longueur = 700; // longueur et largeur doivent etres identiques
 	private static final int largeur = 700;
-	private static final int celluleAdjMin = 2;  // definit la forme 1-3
+	private static final int celluleAdjMin = 3;  // definit la forme 1-3
 	private static final int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
-	private static final int nbrGeneration = 10000; // definit la taille
+	private static final int nbrGeneration = 100; // definit la taille
 	//affecte la view
 	private static final int longueurCellule = 1; //finesse du trait
 	private static final int largeurCellule = 1;
 	private static final int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
 	private static final int ecartCelluleVertical = 1;
-	private static final int tempsDAttente = 0; // temps d'attente entre chaques générations
+	private static final int tempsDAttente = 200; // temps d'attente entre chaques générations
 	
-	Map map;
-	AffichageConsole console;
+	private Map map;
 	private Fenetre fenetre;
 	
 	
@@ -46,23 +45,23 @@ public class Controller {
 		mapBool[(longueur/2)-3][(largeur/2)] = true;
 		mapBool[(longueur/2)-3][(largeur/2)+1] = true;
 
-		/*mapBool[(longueur/2)-2][(largeur/2)-3] = true;
-		mapBool[(longueur/2)-2][(largeur/2)-2] = true;*/
+		mapBool[(longueur/2)-2][(largeur/2)-3] = true;
+		mapBool[(longueur/2)-2][(largeur/2)-2] = true;
 		mapBool[(longueur/2)-2][(largeur/2)-1] = true;
-		/*mapBool[(longueur/2)-2][(largeur/2)] = true;
-		mapBool[(longueur/2)-2][(largeur/2)+1] = true;*/
+		mapBool[(longueur/2)-2][(largeur/2)] = true;
+		mapBool[(longueur/2)-2][(largeur/2)+1] = true;
 
-		/*mapBool[(longueur/2)-1][(largeur/2)-3] = true;*/
+		mapBool[(longueur/2)-1][(largeur/2)-3] = true;
 		mapBool[(longueur/2)-1][(largeur/2)-2] = true;
 		mapBool[(longueur/2)-1][(largeur/2)-1] = true;
 		mapBool[(longueur/2)-1][(largeur/2)] = true;
-		/*mapBool[(longueur/2)-1][(largeur/2)+1] = true;*/
-
-		/*mapBool[(longueur/2)][(largeur/2)-3] = true;
-		mapBool[(longueur/2)][(largeur/2)-2] = true;*/
+		mapBool[(longueur/2)-1][(largeur/2)+1] = true;
+		
+		mapBool[(longueur/2)][(largeur/2)-3] = true;
+		mapBool[(longueur/2)][(largeur/2)-2] = true;
 		mapBool[(longueur/2)][(largeur/2)-1] = true;
-		/*mapBool[(longueur/2)][(largeur/2)] = true;
-		mapBool[(longueur/2)][(largeur/2)+1] = true;*/
+		mapBool[(longueur/2)][(largeur/2)] = true;
+		mapBool[(longueur/2)][(largeur/2)+1] = true;
 		
 		mapBool[(longueur/2)+1][(largeur/2)-3] = true;
 		mapBool[(longueur/2)+1][(largeur/2)-2] = true;
@@ -75,70 +74,20 @@ public class Controller {
 	}
 	
 	
-	public boolean[][] ControlerMap() {// remplacer les if par des switch case
+	public boolean[][] ControlerMap() {
 		int survie;
 		boolean tab[][] = new boolean[longueur][largeur];
-		for(int y = 0; y <= longueur-1; y++) {
-    		for(int x = 0; x <= largeur-1; x++) {
+		for(int y = 1; y <= longueur-2; y++) {
+    		for(int x = 1; x <= largeur-2; x++) {
     			survie = 0;
-    			if(y == 0 && x == 0) {
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-
-    			}else if(y == 0 && x > 0 && x < largeur-1){
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				survie += ControlerCellule(map.getMap()[y+1][x+1]); 
-    				
-    			}else if(y == 0 && x == largeur-1) {
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				
-    			}else if(y > 0 &&  y < longueur-1 && x == largeur-1) {
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				survie += ControlerCellule(map.getMap()[y-1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x-1]);
-    				
-    			}else if(y == longueur-1 && x == largeur-1) {
-    				survie += ControlerCellule(map.getMap()[y-1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				
-    			}else if(y == longueur-1 && x > 0 && x < largeur-1) {//
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				survie += ControlerCellule(map.getMap()[y-1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y-1][x+1]); 
-    				
-    			}else if(y == longueur-1 && x == 0) {
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y-1][x+1]);
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				
-    			}else if(y > 0 && y < longueur-1 && x == 0) {
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				survie += ControlerCellule(map.getMap()[y-1][x+1]);
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x+1]);
-    				
-    			}else if(y > 0 && y < longueur-1 && x > 0 && x < largeur-1) {
-    				survie += ControlerCellule(map.getMap()[y-1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y-1][x]);
-    				survie += ControlerCellule(map.getMap()[y-1][x+1]);
-    				survie += ControlerCellule(map.getMap()[y][x-1]);
-    				survie += ControlerCellule(map.getMap()[y][x+1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x-1]);
-    				survie += ControlerCellule(map.getMap()[y+1][x]);
-    				survie += ControlerCellule(map.getMap()[y+1][x+1]);
-    			}
+				survie += ControlerCellule(map.getMap()[y-1][x-1])
+				 + ControlerCellule(map.getMap()[y-1][x])
+				 + ControlerCellule(map.getMap()[y-1][x+1])
+				 + ControlerCellule(map.getMap()[y][x-1])
+				 + ControlerCellule(map.getMap()[y][x+1])
+				 + ControlerCellule(map.getMap()[y+1][x-1])
+				 + ControlerCellule(map.getMap()[y+1][x])
+				 + ControlerCellule(map.getMap()[y+1][x+1]);
     			tab[y][x] = Survie(survie);
     		}
     	} 
@@ -148,6 +97,7 @@ public class Controller {
 	
 	public int ControlerCellule(boolean cellule) {
 		int var = 0;
+				
 		if(cellule == true) {
 			var = 1;
 		}if(cellule == false) {

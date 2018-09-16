@@ -43,8 +43,9 @@ public class Cellule extends JPanel {
 		    			}else if(getBool()[x][y] == false) {
 		        		    g.setColor(Color.BLACK);          
 		    			}
-		    		    g.fillRect(y * ecartCelluleHorizontal + 2, x * ecartCelluleVertical+ 2,
+		    		    g.fillRect(y * ecartCelluleHorizontal, x * ecartCelluleVertical,
 		    		    		largeurCellule, longueurCellule);
+		    		    
 				}
 			}
     	} 

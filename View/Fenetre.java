@@ -21,8 +21,8 @@ public class Fenetre extends JFrame{
 		int tempsDAttente;
 		private Cellule cell;
 	
-	public Fenetre(boolean tab[][], int y, int x, int longueurCellule, 
-					int largeurCellule, int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente) {
+	public Fenetre(boolean tab[][], int y, int x, int longueurCellule, int largeurCellule, 
+					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente) {
 		
 		longueur = y;
 		largeur = x;
@@ -36,9 +36,10 @@ public class Fenetre extends JFrame{
 		this.tempsDAttente = tempsDAttente;
 		
 	    this.setTitle("Automate Cellulaire");
-	    this.setSize(1366, 768);
+	    this.setSize(716, 739);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setBackground(Color.BLACK);        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	
 
@@ -58,10 +59,6 @@ public class Fenetre extends JFrame{
 
 	private void ActualiserFenetre() {
 		cell.repaint();
-		
-	    //this.setVisible(false);
-	    this.setBackground(Color.BLACK);        
-	   // this.setVisible(true);
 	}
 
 	public Cellule getCell() {
