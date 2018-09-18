@@ -17,10 +17,16 @@ public class Cellule extends JPanel {
 	int largeurCellule;
 	int ecartCelluleHorizontal;
 	int ecartCelluleVertical;
+	Color colorTrait;
+	Color colorInterieur;
+
 	
 	public Cellule(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical) {
+					int ecartCelluleHorizontal, int ecartCelluleVertical,
+					Color colorTrait, Color colorInterieur) {
 		
+		this.colorTrait = colorTrait;
+		this.colorInterieur = colorInterieur;
 		this.longueurCellule = longueurCellule;
 		this.largeurCellule = largeurCellule;
 		this.ecartCelluleHorizontal = ecartCelluleHorizontal;
@@ -39,9 +45,9 @@ public class Cellule extends JPanel {
 	    		if(getBool()[y][x] != getTabBool()[y][x] ) {
     			
 		    			if(getBool()[x][y] == true) {
-		        		    g.setColor(Color.WHITE);          
+		        		    g.setColor(colorTrait);          
 		    			}else if(getBool()[x][y] == false) {
-		        		    g.setColor(Color.BLACK);          
+		        		    g.setColor(colorInterieur);          
 		    			}
 		    		    g.fillRect(y * ecartCelluleHorizontal, x * ecartCelluleVertical,
 		    		    		largeurCellule, longueurCellule);

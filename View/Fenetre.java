@@ -19,27 +19,32 @@ public class Fenetre extends JFrame{
 		int ecartCelluleHorizontal;
 		int ecartCelluleVertical;
 		int tempsDAttente;
-		private Cellule cell;
+		Cellule cell;
+		Color colorBackground;
+
 	
 	public Fenetre(boolean tab[][], int y, int x, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente) {
+					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente,
+					Color colorBackground, Color colorTrait, Color colorInterieur) {
 		
 		longueur = y;
 		largeur = x;
 		setCell(new Cellule(tab, longueur, largeur, longueurCellule, 
-							largeurCellule, ecartCelluleHorizontal, ecartCelluleVertical));
+							largeurCellule, ecartCelluleHorizontal, ecartCelluleVertical,
+							 colorTrait, colorInterieur));
 		
 		this.longueurCellule = longueurCellule;
 		this.largeurCellule = largeurCellule;
 		this.ecartCelluleHorizontal = ecartCelluleHorizontal;
 		this.ecartCelluleVertical = ecartCelluleVertical;
 		this.tempsDAttente = tempsDAttente;
+		this.colorBackground = colorBackground;
 		
 	    this.setTitle("Automate Cellulaire");
-	    this.setSize(716, 739);
+	    this.setSize(730, 739);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setBackground(Color.BLACK);        
+	    this.setBackground(this.colorBackground);        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	
 
