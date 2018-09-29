@@ -1,14 +1,18 @@
 package View;
 
 public class AffichageConsole {
+	int longueur;
+	int largeur;
 	
-	public AffichageConsole() {
-		
+	
+	public AffichageConsole(int y, int x) {
+		longueur = y;
+		largeur = x;
 	}
 	
 	public void AfficherConsolle(boolean map[][]) {
-		for(int y = 0; y <= 19; y++) {
-    		for(int x = 0; x <= 19; x++) {
+		for(int y = 0; y <= longueur-1; y++) {
+    		for(int x = 0; x <= largeur-1; x++) {
     			if(map[y][x] == true) {
         			System.out.print("11");
     			}else {
