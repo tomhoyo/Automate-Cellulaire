@@ -1,6 +1,6 @@
 package Controller;
-import View.*;
 
+import View.*;
 import java.awt.Color;
 import java.io.IOException;
 import Model.*;
@@ -13,8 +13,8 @@ public class Controller {
 		private static final  int celluleAdjMin = 2;  // definit la forme 1-3
 		private static final  int celluleAdjMax = 3; // definit le fond toujours surperieur à "celluleAdjMin"
 		private static final  int celluleAdjNaissance = 2;
-		private static final int nbrGeneration = 200; // definit la taille
-		private static final  boolean choixSurvie = false;
+		private static final int nbrGeneration = 300; // definit la taille
+		private static final  boolean choixSurvie = false; // choix du type de model de survie
 	//affecte la view
 		private static final int longueurCellule = 1; //finesse du trait
 		private static final int largeurCellule = 1;
@@ -90,8 +90,7 @@ public class Controller {
 		boolean tab[][] = new boolean[longueur][largeur];
 		for(int y = 1; y <= longueur-2; y++) {
     		for(int x = 1; x <= largeur-2; x++) {
-    			survie = 0;
-				survie += ControlerCellule(map.getMap()[y-1][x-1])
+				survie = ControlerCellule(map.getMap()[y-1][x-1])
 				 + ControlerCellule(map.getMap()[y-1][x])
 				 + ControlerCellule(map.getMap()[y-1][x+1])
 				 + ControlerCellule(map.getMap()[y][x-1])
@@ -100,7 +99,7 @@ public class Controller {
 				 + ControlerCellule(map.getMap()[y+1][x])
 				 + ControlerCellule(map.getMap()[y+1][x+1]);
 				
-				if(choixSurvie == true) {
+				if(choixSurvie == true){
 	    			tab[y][x] = Survie1(survie);
 
 				}else if(choixSurvie == false){

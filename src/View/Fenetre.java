@@ -41,7 +41,7 @@ public class Fenetre extends JFrame{
 		this.colorBackground = colorBackground;
 		
 	    this.setTitle("Automate Cellulaire");
-	    this.setSize(730, 739);
+	    this.setSize(716, 739);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setBackground(this.colorBackground);        
