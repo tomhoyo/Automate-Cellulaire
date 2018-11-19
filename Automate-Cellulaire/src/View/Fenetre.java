@@ -6,51 +6,28 @@ import javax.swing.JFrame;
 
 public class Fenetre extends JFrame{
 	
-		/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2542229582075632318L;
-		int longueur;
-		int largeur;
-		int cadreLongueur;
-		int cadreLargeur;
-		int longueurCellule;
-		int largeurCellule;
-		int ecartCelluleHorizontal;
-		int ecartCelluleVertical;
-		int tempsDAttente;
-		Cellule cell;
-		Color colorBackground;
+	Cellule cell;
 
-	
-	public Fenetre(boolean tab[][], int y, int x, int longueurCellule, int largeurCellule, 
+	public Fenetre(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
 					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente,
 					Color colorBackground, Color colorTrait, Color colorInterieur) {
 		
-		longueur = y;
-		largeur = x;
 		setCell(new Cellule(tab, longueur, largeur, longueurCellule, 
 							largeurCellule, ecartCelluleHorizontal, ecartCelluleVertical,
 							 colorTrait, colorInterieur));
-		
-		this.longueurCellule = longueurCellule;
-		this.largeurCellule = largeurCellule;
-		this.ecartCelluleHorizontal = ecartCelluleHorizontal;
-		this.ecartCelluleVertical = ecartCelluleVertical;
-		this.tempsDAttente = tempsDAttente;
-		this.colorBackground = colorBackground;
 		
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(716, 739);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setBackground(this.colorBackground);        
+	    this.setBackground(colorBackground);        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	
 
 	}
 	
-	public void AfficherEvolution(boolean tab[][]) {
+	public void AfficherEvolution(boolean tab[][], int tempsDAttente) {
 		try {
 	        Thread.sleep(tempsDAttente);
 	      } catch (InterruptedException e) {

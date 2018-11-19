@@ -7,79 +7,55 @@ import Model.*;
 
 public class Controller {
 	
-	//affecte le controller
-		private static final int longueur = 700; // longueur et largeur doivent etres identiques
-		private static final int largeur = 700;
-		private static final  int celluleAdjMin = 1;  // definit la forme 1-3
-		private static final  int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
-		private static final  int celluleAdjNaissance = 1;
-		private static final int nbrGeneration = 3000; // definit la taille
-		private static final  boolean choixSurvie = false; // choix du type de model de survie
-	//affecte la view
-		private static final int longueurCellule = 1; //finesse du trait
-		private static final int largeurCellule = 1;
-		private static final int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
-		private static final int ecartCelluleVertical = 1;
-		private static final int tempsDAttente = 10; // temps d'attente entre chaques générations
-		private static final Color colorBackground = new Color(0, 0, 0);
-		private static final Color colorTrait = new Color(255, 255, 255);
-		private static final Color colorInterieur = new Color(0, 0, 0);
-	
 	private Map map;
 	private Fenetre fenetre;
 	
-	
 	public Controller() throws IOException {
-		map = new Map(InstancierMap(), longueur, largeur);
-		fenetre = new Fenetre(map.getMap(), longueur, largeur, longueurCellule, largeurCellule, 
-								ecartCelluleHorizontal, ecartCelluleVertical, tempsDAttente, 
-								colorBackground, colorTrait, colorInterieur);
+		map = new Map(InstancierMap(), Map.getLongueur(), Map.getLargeur());
+		fenetre = new Fenetre(map.getMap(), Map.getLongueur(), Map.getLargeur(), Map.getLongueurcellule(), 
+				Map.getLargeurcellule(), Map.getEcartcellulehorizontal(), Map.getEcartcellulevertical(), 
+				Map.getTempsdattente(), Map.getColorbackground(), Map.getColortrait(), Map.getColorinterieur());
 		
-	
-		
-		for(int i = 0; i < nbrGeneration; i++) {
+		for(int i = 0; i < Map.getNbrgeneration(); i++) {
 			map.setMap(ControlerMap());
-			fenetre.AfficherEvolution(map.getMap());
-		}
-		
-		
+			fenetre.AfficherEvolution(map.getMap(), Map.getTempsdattente());
+		}		
 	}
 	
 	
 	
 	public boolean[][] InstancierMap() throws IOException {
-		boolean[][] mapBool = new boolean[longueur][largeur];
+		boolean[][] mapBool = new boolean[Map.getLongueur()][Map.getLargeur()];
 		
-		mapBool[(longueur/2)-3][(largeur/2)-3] = true;
-		mapBool[(longueur/2)-3][(largeur/2)-2] = true;
-		mapBool[(longueur/2)-3][(largeur/2)-1] = true;
-		mapBool[(longueur/2)-3][(largeur/2)] = true;
-		mapBool[(longueur/2)-3][(largeur/2)+1] = true;
+		mapBool[(Map.getLongueur()/2)-3][(Map.getLargeur()/2)-3] = true;
+		mapBool[(Map.getLongueur()/2)-3][(Map.getLargeur()/2)-2] = true;
+		mapBool[(Map.getLongueur()/2)-3][(Map.getLargeur()/2)-1] = true;
+		mapBool[(Map.getLongueur()/2)-3][(Map.getLargeur()/2)] = true;
+		mapBool[(Map.getLongueur()/2)-3][(Map.getLargeur()/2)+1] = true;
 
-		mapBool[(longueur/2)-2][(largeur/2)-3] = true;
-		mapBool[(longueur/2)-2][(largeur/2)-2] = true;
-		mapBool[(longueur/2)-2][(largeur/2)-1] = true;
-		mapBool[(longueur/2)-2][(largeur/2)] = true;
-		mapBool[(longueur/2)-2][(largeur/2)+1] = true;
+		mapBool[(Map.getLongueur()/2)-2][(Map.getLargeur()/2)-3] = true;
+		mapBool[(Map.getLongueur()/2)-2][(Map.getLargeur()/2)-2] = true;
+		mapBool[(Map.getLongueur()/2)-2][(Map.getLargeur()/2)-1] = true;
+		mapBool[(Map.getLongueur()/2)-2][(Map.getLargeur()/2)] = true;
+		mapBool[(Map.getLongueur()/2)-2][(Map.getLargeur()/2)+1] = true;
 
-		mapBool[(longueur/2)-1][(largeur/2)-3] = true;
-		mapBool[(longueur/2)-1][(largeur/2)-2] = true;
-		mapBool[(longueur/2)-1][(largeur/2)-1] = true;
-		mapBool[(longueur/2)-1][(largeur/2)] = true;
-		mapBool[(longueur/2)-1][(largeur/2)+1] = true;
+		mapBool[(Map.getLongueur()/2)-1][(Map.getLargeur()/2)-3] = true;
+		mapBool[(Map.getLongueur()/2)-1][(Map.getLargeur()/2)-2] = true;
+		mapBool[(Map.getLongueur()/2)-1][(Map.getLargeur()/2)-1] = true;
+		mapBool[(Map.getLongueur()/2)-1][(Map.getLargeur()/2)] = true;
+		mapBool[(Map.getLongueur()/2)-1][(Map.getLargeur()/2)+1] = true;
 		
-		mapBool[(longueur/2)][(largeur/2)-3] = true;
-		mapBool[(longueur/2)][(largeur/2)-2] = true;
-		mapBool[(longueur/2)][(largeur/2)-1] = true;
-		mapBool[(longueur/2)][(largeur/2)] = true;
-		mapBool[(longueur/2)][(largeur/2)+1] = true;
+		mapBool[(Map.getLongueur()/2)][(Map.getLargeur()/2)-3] = true;
+		mapBool[(Map.getLongueur()/2)][(Map.getLargeur()/2)-2] = true;
+		mapBool[(Map.getLongueur()/2)][(Map.getLargeur()/2)-1] = true;
+		mapBool[(Map.getLongueur()/2)][(Map.getLargeur()/2)] = true;
+		mapBool[(Map.getLongueur()/2)][(Map.getLargeur()/2)+1] = true;
 		
-		mapBool[(longueur/2)+1][(largeur/2)-3] = true;
-		mapBool[(longueur/2)+1][(largeur/2)-2] = true;
-		mapBool[(longueur/2)+1][(largeur/2)-1] = true;
-		mapBool[(longueur/2)+1][(largeur/2)] = true;
-		mapBool[(longueur/2)+1][(largeur/2)+1] = true;
-
+		mapBool[(Map.getLongueur()/2)+1][(Map.getLargeur()/2)-3] = true;
+		mapBool[(Map.getLongueur()/2)+1][(Map.getLargeur()/2)-2] = true;
+		mapBool[(Map.getLongueur()/2)+1][(Map.getLargeur()/2)-1] = true;
+		mapBool[(Map.getLongueur()/2)+1][(Map.getLargeur()/2)] = true;
+		mapBool[(Map.getLongueur()/2)+1][(Map.getLargeur()/2)+1] = true;
 
     	return mapBool;
 	}
@@ -87,9 +63,9 @@ public class Controller {
 	
 	public boolean[][] ControlerMap() {
 		int survie;
-		boolean tab[][] = new boolean[longueur][largeur];
-		for(int y = 1; y <= longueur-2; y++) {
-    		for(int x = 1; x <= largeur-2; x++) {
+		boolean tab[][] = new boolean[Map.getLongueur()][Map.getLargeur()];
+		for(int y = 1; y <= Map.getLongueur()-2; y++) {
+    		for(int x = 1; x <= Map.getLargeur()-2; x++) {
 				survie = ControlerCellule(map.getMap()[y-1][x-1])
 				 + ControlerCellule(map.getMap()[y-1][x])
 				 + ControlerCellule(map.getMap()[y-1][x+1])
@@ -99,13 +75,11 @@ public class Controller {
 				 + ControlerCellule(map.getMap()[y+1][x])
 				 + ControlerCellule(map.getMap()[y+1][x+1]);
 				
-				if(choixSurvie == true){
+				if(Map.getChoixsurvie() == true){
 	    			tab[y][x] = Survie1(survie);
-
-				}else if(choixSurvie == false){
+				}else if(Map.getChoixsurvie() == false){
 	    			tab[y][x] = Survie2(survie, map.getMap()[y][x]);
 				}
-
     		}
     	} 
 		return tab;
@@ -126,9 +100,9 @@ public class Controller {
 	
 	public boolean Survie1(int survie) {
 		boolean bool = false;
-		if(survie >= celluleAdjMin && survie <= celluleAdjMax) {
+		if(survie >= Map.getCelluleadjmin() && survie <= Map.getCelluleadjmax()) {
 			bool = true;
-		}else if(survie < celluleAdjMin && survie > celluleAdjMax) {
+		}else if(survie < Map.getCelluleadjmin() && survie > Map.getCelluleadjmax()) {
 			bool = false;
 		}
 		return bool;
@@ -137,12 +111,11 @@ public class Controller {
 	
 	public boolean Survie2(int survie, boolean etat) {
 		boolean bool = false;
-
-			if(etat == true && survie >= celluleAdjMin && survie <= celluleAdjMax ) {
-				bool = true;
-			}else if(etat == false && survie == celluleAdjNaissance) {
-				bool = true;
-			}
+		if(etat == true && survie >= Map.getCelluleadjmin() && survie <= Map.getCelluleadjmax() ) {
+			bool = true;
+		}else if(etat == false && survie == Map.getCelluleadjnaissance()) {
+			bool = true;
+		}
 		return bool;
 	}
 	

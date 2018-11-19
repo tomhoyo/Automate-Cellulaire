@@ -19,7 +19,7 @@ public class Cellule extends JPanel {
 	int ecartCelluleVertical;
 	Color colorTrait;
 	Color colorInterieur;
-	int x = 255, y = 0, z = 0, w = 0; 
+	int x = 255, y, z, w = 0; 
 	
 	public Cellule(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
 					int ecartCelluleHorizontal, int ecartCelluleVertical,
@@ -41,11 +41,9 @@ public class Cellule extends JPanel {
 
 	public void paintComponent(Graphics g){ 
 		this.colorTrait = changeColor();
-
 		for(int y = 0; y <= longueur-1; y++) {
     		for(int x = 0; x <= largeur-1; x++) {
 	    		if(getBool()[y][x] != getTabBool()[y][x] ) {
-	    			
 		    			if(getBool()[x][y] == true) {
 		        		    g.setColor(colorTrait);          
 		    			}else if(getBool()[x][y] == false) {
@@ -53,7 +51,6 @@ public class Cellule extends JPanel {
 		    			}
 		    		    g.fillRect(y * ecartCelluleHorizontal, x * ecartCelluleVertical,
 		    		    		largeurCellule, longueurCellule);
-		    		    
 				}
 			}
     	} 
@@ -61,7 +58,6 @@ public class Cellule extends JPanel {
 	}
 	
 	Color changeColor() {
-		
 		if(this.x==255 && this.y<255 && this.z==0) {
 			this.y+=5;
 		}else if(this.x>0 && this.y==255 && this.z==0) {
@@ -76,7 +72,6 @@ public class Cellule extends JPanel {
 			this.z-=5;
 		}
 		return new Color(this.x, this.y, this.z);
-		
 	}
 
 	boolean[][] getBool() {
