@@ -10,10 +10,10 @@ public class Controller {
 	//affecte le controller
 		private static final int longueur = 700; // longueur et largeur doivent etres identiques
 		private static final int largeur = 700;
-		private static final  int celluleAdjMin = 2;  // definit la forme 1-3
-		private static final  int celluleAdjMax = 3; // definit le fond toujours surperieur à "celluleAdjMin"
-		private static final  int celluleAdjNaissance = 2;
-		private static final int nbrGeneration = 300; // definit la taille
+		private static final  int celluleAdjMin = 1;  // definit la forme 1-3
+		private static final  int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
+		private static final  int celluleAdjNaissance = 1;
+		private static final int nbrGeneration = 3000; // definit la taille
 		private static final  boolean choixSurvie = false; // choix du type de model de survie
 	//affecte la view
 		private static final int longueurCellule = 1; //finesse du trait
