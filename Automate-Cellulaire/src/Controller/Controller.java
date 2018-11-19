@@ -76,9 +76,9 @@ public class Controller {
 				 + ControlerCellule(map.getMap()[y+1][x+1]);
 				
 				if(Map.getChoixsurvie() == true){
-	    			tab[y][x] = Survie1(survie);
+	    			tab[y][x] = Survie(survie);
 				}else if(Map.getChoixsurvie() == false){
-	    			tab[y][x] = Survie2(survie, map.getMap()[y][x]);
+	    			tab[y][x] = Survie(survie, map.getMap()[y][x]);
 				}
     		}
     	} 
@@ -96,9 +96,8 @@ public class Controller {
 		}
 		return var;
 	}
-	
-	
-	public boolean Survie1(int survie) {
+		
+	public boolean Survie(int survie) {
 		boolean bool = false;
 		if(survie >= Map.getCelluleadjmin() && survie <= Map.getCelluleadjmax()) {
 			bool = true;
@@ -109,7 +108,7 @@ public class Controller {
 	}
 
 	
-	public boolean Survie2(int survie, boolean etat) {
+	public boolean Survie(int survie, boolean etat) {
 		boolean bool = false;
 		if(etat == true && survie >= Map.getCelluleadjmin() && survie <= Map.getCelluleadjmax() ) {
 			bool = true;
