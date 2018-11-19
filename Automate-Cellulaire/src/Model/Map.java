@@ -5,32 +5,69 @@ import java.awt.Color;
 public class Map {
 	 
 //affecte le controller
-	private static final int longueur = 700; // longueur et largeur doivent etres identiques
-	private static final int largeur = 700;
-	private static final  int celluleAdjMin = 1;  // definit la forme 1-3
-	private static final  int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
-	private static final  int celluleAdjNaissance = 1;
-	private static final int nbrGeneration = 3000; // definit la taille
-	private static final  boolean choixSurvie = false; // choix du type de model de survie
+	private int longueur = 700; // longueur et largeur doivent etres identiques
+	private int largeur = 700;
+	private int celluleAdjMin = 1;  // definit la forme 1-3
+	private int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
+	private int celluleAdjNaissance = 1;
+	private int nbrGeneration = 3000; // definit la taille
+	private boolean choixSurvie = false; // choix du type de model de survie
 //affecte la view
-	private static final int longueurCellule = 1; //finesse du trait
-	private static final int largeurCellule = 1;
-	private static final int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
-	private static final int ecartCelluleVertical = 1;
-	private static final int tempsDAttente = 10; // temps d'attente entre chaques générations
-	private static final Color colorBackground = new Color(0, 0, 0);
-	private static final Color colorTrait = new Color(255, 255, 255);
-	private static final Color colorInterieur = new Color(0, 0, 0);
+	private int longueurFenetre = 739; // 716
+	private int largeurFenetre = 716; // 739
+	private int longueurCellule = 1; //finesse du trait
+	private int largeurCellule = 1;
+	private int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
+	private int ecartCelluleVertical = 1;
+	private int tempsDAttente = 10; // temps d'attente entre chaques générations
+	private Color colorBackground = new Color(0, 0, 0);
+	private Color colorTrait = new Color(255, 255, 255);
+	private Color colorInterieur = new Color(0, 0, 0);
 	
 /////////////////////////////////////////
 	
 	private boolean map[][];
 	
-	public Map(boolean tab[][], int longueur, int largeur) {
-		map = new boolean[longueur][largeur];
-		setMap(tab);
+	public Map() {
+		map = new boolean[getLongueur()][getLargeur()];
+		setMap(InstancierMap());
 	}
 
+	public boolean[][] InstancierMap() {
+		
+		map[(getLongueur()/2)-3][(getLargeur()/2)-3] = true;
+		map[(getLongueur()/2)-3][(getLargeur()/2)-2] = true;
+		map[(getLongueur()/2)-3][(getLargeur()/2)-1] = true;
+		map[(getLongueur()/2)-3][(getLargeur()/2)] = true;
+		map[(getLongueur()/2)-3][(getLargeur()/2)+1] = true;
+
+		map[(getLongueur()/2)-2][(getLargeur()/2)-3] = true;
+		map[(getLongueur()/2)-2][(getLargeur()/2)-2] = true;
+		map[(getLongueur()/2)-2][(getLargeur()/2)-1] = true;
+		map[(getLongueur()/2)-2][(getLargeur()/2)] = true;
+		map[(getLongueur()/2)-2][(getLargeur()/2)+1] = true;
+
+		map[(getLongueur()/2)-1][(getLargeur()/2)-3] = true;		
+		map[(getLongueur()/2)-1][(getLargeur()/2)-2] = true;
+		map[(getLongueur()/2)-1][(getLargeur()/2)-1] = true;
+		map[(getLongueur()/2)-1][(getLargeur()/2)] = true;
+		map[(getLongueur()/2)-1][(getLargeur()/2)+1] = true;
+		
+		map[(getLongueur()/2)][(getLargeur()/2)-3] = true;
+		map[(getLongueur()/2)][(getLargeur()/2)-2] = true;
+		map[(getLongueur()/2)][(getLargeur()/2)-1] = true;
+		map[(getLongueur()/2)][(getLargeur()/2)] = true;
+		map[(getLongueur()/2)][(getLargeur()/2)+1] = true;
+		
+		map[(getLongueur()/2)+1][(getLargeur()/2)-3] = true;
+		map[(getLongueur()/2)+1][(getLargeur()/2)-2] = true;
+		map[(getLongueur()/2)+1][(getLargeur()/2)-1] = true;
+		map[(getLongueur()/2)+1][(getLargeur()/2)] = true;
+		map[(getLongueur()/2)+1][(getLargeur()/2)+1] = true;
+
+    	return map;
+	}
+	
 	public boolean[][] getMap() {
 		return map;
 	}
@@ -39,64 +76,80 @@ public class Map {
 		this.map = map;
 	}
 
-	public static int getLongueur() {
+	public int getLongueur() {
 		return longueur;
 	}
 
-	public static int getLargeur() {
+	public int getLargeur() {
 		return largeur;
 	}
 
-	public static int getCelluleadjmin() {
+	public int getCelluleadjmin() {
 		return celluleAdjMin;
 	}
 
-	public static int getCelluleadjmax() {
+	public int getCelluleadjmax() {
 		return celluleAdjMax;
 	}
 
-	public static int getCelluleadjnaissance() {
+	public int getCelluleadjnaissance() {
 		return celluleAdjNaissance;
 	}
 
-	public static int getNbrgeneration() {
+	public int getNbrgeneration() {
 		return nbrGeneration;
 	}
 
-	public static boolean getChoixsurvie() {
+	public boolean getChoixsurvie() {
 		return choixSurvie;
 	}
 
-	public static int getLongueurcellule() {
+	public int getLongueurcellule() {
 		return longueurCellule;
 	}
 
-	public static int getLargeurcellule() {
+	public  int getLargeurcellule() {
 		return largeurCellule;
 	}
 
-	public static int getEcartcellulehorizontal() {
+	public int getEcartcellulehorizontal() {
 		return ecartCelluleHorizontal;
 	}
 
-	public static int getEcartcellulevertical() {
+	public int getEcartcellulevertical() {
 		return ecartCelluleVertical;
 	}
 
-	public static int getTempsdattente() {
+	public int getTempsdattente() {
 		return tempsDAttente;
 	}
 
-	public static Color getColorbackground() {
+	public Color getColorbackground() {
 		return colorBackground;
 	}
 
-	public static Color getColortrait() {
+	public Color getColortrait() {
 		return colorTrait;
 	}
 
-	public static Color getColorinterieur() {
+	public Color getColorinterieur() {
 		return colorInterieur;
+	}
+
+	public int getLongueurFenetre() {
+		return longueurFenetre;
+	}
+
+	public void setLongueurFenetre(int longueurFenetre) {
+		this.longueurFenetre = longueurFenetre;
+	}
+
+	public int getLargeurFenetre() {
+		return largeurFenetre;
+	}
+
+	public void setLargeurFenetre(int largeurFenetre) {
+		this.largeurFenetre = largeurFenetre;
 	}
 
 }

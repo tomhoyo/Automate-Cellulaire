@@ -6,7 +6,7 @@ import Controller.Controller;
 /*
  * 
  * modifier la methode InstancierMap();
- * faire des motif multicolor
+ * XXX faire des motif multicolor
  * longueur != largeur
  * 
  * */
@@ -14,6 +14,7 @@ import Controller.Controller;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
+		@SuppressWarnings("unused")
 		Controller controller = new Controller();
 
 	}
