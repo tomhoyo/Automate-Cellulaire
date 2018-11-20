@@ -13,7 +13,8 @@ public class Controller {
 		map = new Map();
 		fenetre = new Fenetre(map.getMap(),map.getLongueurFenetre(), map.getLargeurFenetre(), map.getLongueur(), map.getLargeur(), 
 				map.getLongueurcellule(), map.getLargeurcellule(), map.getEcartcellulehorizontal(), map.getEcartcellulevertical(), 
-				map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur());
+				map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur(), map.getVitesseChangeColor(),
+				map.getRedIntansity(), map.getGreenIntansity(), map.getBlueIntansity());
 		
 		for(int i = 0; i < map.getNbrgeneration(); i++) {
 			map.setMap(ControlerMap());

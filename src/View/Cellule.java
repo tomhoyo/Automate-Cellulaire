@@ -19,11 +19,17 @@ public class Cellule extends JPanel {
 	int ecartCelluleVertical;
 	Color colorTrait;
 	Color colorInterieur;
-	int x = 255, y, z, w = 0; 
+	int VitesseChangeColor;
+	int RedIntansity = 255, GreenIntansity, BlueIntansity; 
 	
 	public Cellule(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical, Color colorInterieur) {
+					int ecartCelluleHorizontal, int ecartCelluleVertical, Color colorInterieur, int VitesseChangeColor,
+					int RedIntansity, int GreenIntansity, int BlueIntansity) {
 		
+		this.BlueIntansity = BlueIntansity;
+		this.GreenIntansity = GreenIntansity;
+		this.RedIntansity = RedIntansity;
+		this.VitesseChangeColor = VitesseChangeColor;
 		this.colorInterieur = colorInterieur;
 		this.longueurCellule = longueurCellule;
 		this.largeurCellule = largeurCellule;
@@ -56,20 +62,20 @@ public class Cellule extends JPanel {
 	}
 	
 	Color changeColor() {
-		if(this.x==255 && this.y<255 && this.z==0) {
-			this.y+=5;
-		}else if(this.x>0 && this.y==255 && this.z==0) {
-			this.x-=5;
-		}else if(this.x==0 && this.y==255 && this.z<255) {
-			this.z+=5;
-		}else if(this.x==0 && this.y>0 && this.z==255) {
-			this.y-=5;
-		}else if(this.x<255 && this.y==0 && this.z==255) {
-			this.x+=5;
-		}else if(this.x==255 && this.y==0 && this.z>0) {
-			this.z-=5;
+		if(this.RedIntansity==255 && this.GreenIntansity<255 && this.BlueIntansity==0) {
+			this.GreenIntansity+=this.VitesseChangeColor;
+		}else if(this.RedIntansity>0 && this.GreenIntansity==255 && this.BlueIntansity==0) {
+			this.RedIntansity-=this.VitesseChangeColor;
+		}else if(this.RedIntansity==0 && this.GreenIntansity==255 && this.BlueIntansity<255) {
+			this.BlueIntansity+=this.VitesseChangeColor;
+		}else if(this.RedIntansity==0 && this.GreenIntansity>0 && this.BlueIntansity==255) {
+			this.GreenIntansity-=this.VitesseChangeColor;
+		}else if(this.RedIntansity<255 && this.GreenIntansity==0 && this.BlueIntansity==255) {
+			this.RedIntansity+=this.VitesseChangeColor;
+		}else if(this.RedIntansity==255 && this.GreenIntansity==0 && this.BlueIntansity>0) {
+			this.BlueIntansity-=this.VitesseChangeColor;
 		}
-		return new Color(this.x, this.y, this.z);
+		return new Color(this.RedIntansity, this.GreenIntansity, this.BlueIntansity);
 	}
 
 	boolean[][] getBool() {

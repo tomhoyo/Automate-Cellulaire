@@ -9,12 +9,14 @@ public class Fenetre extends JFrame{
 	private static final long serialVersionUID = 2542229582075632318L;
 	Cellule cell;
 
-	public Fenetre(boolean tab[][],int longueurFenetre, int largeurFenetre, int longueur, int largeur, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente,
-					Color colorBackground, Color colorInterieur) {
+	public Fenetre(boolean tab[][],int longueurFenetre, int largeurFenetre, int longueur, int largeur, 
+					int longueurCellule, int largeurCellule, int ecartCelluleHorizontal, int ecartCelluleVertical, 
+					int tempsDAttente, Color colorBackground, Color colorInterieur, int VitesseChangeColor,
+					int RedIntansity, int GreenIntansity, int BlueIntansity) {
 		
 		setCell(new Cellule(tab, longueur, largeur, longueurCellule, largeurCellule, 
-							ecartCelluleHorizontal, ecartCelluleVertical, colorInterieur));
+							ecartCelluleHorizontal, ecartCelluleVertical, colorInterieur, VitesseChangeColor,
+							RedIntansity, GreenIntansity, BlueIntansity));
 		
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(largeurFenetre, longueurFenetre);
