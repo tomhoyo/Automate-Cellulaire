@@ -21,7 +21,6 @@ public class Map {
 	private int ecartCelluleVertical = 1;
 	private int tempsDAttente = 10; // temps d'attente entre chaques générations
 	private Color colorBackground = new Color(0, 0, 0);
-	private Color colorTrait = new Color(255, 255, 255);
 	private Color colorInterieur = new Color(0, 0, 0);
 	
 /////////////////////////////////////////
@@ -126,10 +125,6 @@ public class Map {
 
 	public Color getColorbackground() {
 		return colorBackground;
-	}
-
-	public Color getColortrait() {
-		return colorTrait;
 	}
 
 	public Color getColorinterieur() {

@@ -22,10 +22,8 @@ public class Cellule extends JPanel {
 	int x = 255, y, z, w = 0; 
 	
 	public Cellule(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical,
-					Color colorTrait, Color colorInterieur) {
+					int ecartCelluleHorizontal, int ecartCelluleVertical, Color colorInterieur) {
 		
-		this.colorTrait = colorTrait;
 		this.colorInterieur = colorInterieur;
 		this.longueurCellule = longueurCellule;
 		this.largeurCellule = largeurCellule;

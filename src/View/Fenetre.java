@@ -11,11 +11,10 @@ public class Fenetre extends JFrame{
 
 	public Fenetre(boolean tab[][],int longueurFenetre, int largeurFenetre, int longueur, int largeur, int longueurCellule, int largeurCellule, 
 					int ecartCelluleHorizontal, int ecartCelluleVertical, int tempsDAttente,
-					Color colorBackground, Color colorTrait, Color colorInterieur) {
+					Color colorBackground, Color colorInterieur) {
 		
-		setCell(new Cellule(tab, longueur, largeur, longueurCellule, 
-							largeurCellule, ecartCelluleHorizontal, ecartCelluleVertical,
-							 colorTrait, colorInterieur));
+		setCell(new Cellule(tab, longueur, largeur, longueurCellule, largeurCellule, 
+							ecartCelluleHorizontal, ecartCelluleVertical, colorInterieur));
 		
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(largeurFenetre, longueurFenetre);
