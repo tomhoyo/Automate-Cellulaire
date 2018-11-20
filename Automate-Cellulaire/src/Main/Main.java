@@ -1,6 +1,5 @@
 package Main;
 
-import java.io.IOException;
 import Controller.Controller;
 
 /*
@@ -13,7 +12,7 @@ import Controller.Controller;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		Controller controller = new Controller();
 
