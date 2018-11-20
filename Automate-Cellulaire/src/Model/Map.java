@@ -13,8 +13,8 @@ public class Map {
 	private int nbrGeneration = 3000; // definit la taille
 	private boolean choixSurvie = false; // choix du type de model de survie
 //affecte la view
-	private int longueurFenetre = 739; // 716
-	private int largeurFenetre = 716; // 739
+	private int longueurFenetre = 739; // 739
+	private int largeurFenetre = 716; // 716
 	private int longueurCellule = 1; //finesse du trait
 	private int largeurCellule = 1;
 	private int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
