@@ -7,7 +7,7 @@ import Controller.Controller;
 /*
  * 
  * modifier la methode InstancierMap();
- * XXX faire des motif multicolor
+ * XXX faire des motif multicolor 
  * longueur != largeur
  * 
  * */
