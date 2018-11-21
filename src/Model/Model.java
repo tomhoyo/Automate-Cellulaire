@@ -46,35 +46,12 @@ public class Model {
 
 	public boolean[][] InstancierMap() {
 		
-		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-3] = true;
-		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-2] = true;
-		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-1] = true;
-		presentMap[(getLongueur()/2)-3][(getLargeur()/2)] = true;
-		presentMap[(getLongueur()/2)-3][(getLargeur()/2)+1] = true;
-
-		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-3] = true;
-		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-2] = true;
-		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-1] = true;
-		presentMap[(getLongueur()/2)-2][(getLargeur()/2)] = true;
-		presentMap[(getLongueur()/2)-2][(getLargeur()/2)+1] = true;
-
-		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-3] = true;		
-		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-2] = true;
-		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-1] = true;
-		presentMap[(getLongueur()/2)-1][(getLargeur()/2)] = true;
-		presentMap[(getLongueur()/2)-1][(getLargeur()/2)+1] = true;
+		for(int x = -3; x <= 1; x++) {
+			for(int y = -3; y <= 1; y++) {
+				presentMap[(getLongueur()/2)+x][(getLargeur()/2)+y] = true;
+			}
+		}
 		
-		presentMap[(getLongueur()/2)][(getLargeur()/2)-3] = true;
-		presentMap[(getLongueur()/2)][(getLargeur()/2)-2] = true;
-		presentMap[(getLongueur()/2)][(getLargeur()/2)-1] = true;
-		presentMap[(getLongueur()/2)][(getLargeur()/2)] = true;
-		presentMap[(getLongueur()/2)][(getLargeur()/2)+1] = true;
-		
-		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-3] = true;
-		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-2] = true;
-		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-1] = true;
-		presentMap[(getLongueur()/2)+1][(getLargeur()/2)] = true;
-		presentMap[(getLongueur()/2)+1][(getLargeur()/2)+1] = true;
 
     	return presentMap;
 	}
