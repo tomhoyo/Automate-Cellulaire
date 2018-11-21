@@ -18,6 +18,7 @@ public class Fenetre extends JFrame{
 		setCell(new Cellule(tab, longueur, largeur, longueurCellule, largeurCellule, 
 							ecartCelluleHorizontal, ecartCelluleVertical, colorInterieur, VitesseChangeColor,
 							RedIntansity, GreenIntansity, BlueIntansity));
+		
 		this.tempsDAttente = tempsDAttente;
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(largeurFenetre, longueurFenetre);

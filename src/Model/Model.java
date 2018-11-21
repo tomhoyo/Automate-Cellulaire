@@ -2,7 +2,7 @@ package Model;
 
 import java.awt.Color;
 
-public class Map {
+public class Model {
 	 
 //affecte le controller
 	private int longueur = 700; // longueur et largeur doivent etres identiques
@@ -32,7 +32,7 @@ public class Map {
 	
 	private boolean presentMap[][];
 	
-	public Map() {
+	public Model() {
 		
 		presentMap = new boolean[getLongueur()][getLargeur()];
 		setPresentMap(InstancierMap());

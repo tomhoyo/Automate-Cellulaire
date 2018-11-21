@@ -6,11 +6,11 @@ import Model.*;
 
 public class Controller {
 	
-	private Map map;
+	private Model map;
 	private Fenetre fenetre;
 	
 	public Controller() throws IOException {
-		map = new Map();
+		map = new Model();
 		fenetre = new Fenetre(map.getPresentMap(),map.getLongueurFenetre(), map.getLargeurFenetre(), map.getLongueur(), 
 				map.getLargeur(), map.getLongueurcellule(), map.getLargeurcellule(), map.getEcartcellulehorizontal(), 
 				map.getEcartcellulevertical(), map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur(), map.getVitesseChangeColor(),
@@ -58,7 +58,6 @@ public class Controller {
 	}
 		
 	private boolean Survie(int survie) {
-		
 		if(survie >= map.getCelluleadjmin() && survie <= map.getCelluleadjmax()) {
 			return true;
 		}else if(survie < map.getCelluleadjmin() && survie > map.getCelluleadjmax()) {
