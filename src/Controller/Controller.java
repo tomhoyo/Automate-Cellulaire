@@ -11,79 +11,76 @@ public class Controller {
 	
 	public Controller() throws IOException {
 		map = new Map();
-		fenetre = new Fenetre(map.getMap(),map.getLongueurFenetre(), map.getLargeurFenetre(), map.getLongueur(), map.getLargeur(), 
-				map.getLongueurcellule(), map.getLargeurcellule(), map.getEcartcellulehorizontal(), map.getEcartcellulevertical(), 
-				map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur(), map.getVitesseChangeColor(),
+		fenetre = new Fenetre(map.getPresentMap(),map.getLongueurFenetre(), map.getLargeurFenetre(), map.getLongueur(), 
+				map.getLargeur(), map.getLongueurcellule(), map.getLargeurcellule(), map.getEcartcellulehorizontal(), 
+				map.getEcartcellulevertical(), map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur(), map.getVitesseChangeColor(),
 				map.getRedIntansity(), map.getGreenIntansity(), map.getBlueIntansity());
 		
-		for(int i = 0; i < map.getNbrgeneration(); i++) {
-			map.setMap(ControlerMap());
-			fenetre.AfficherEvolution(map.getMap(), map.getTempsdattente());
+		for(int numGeneration = 0; numGeneration < map.getNbrgeneration(); numGeneration++) {
+			map.setPresentMap(ControlMap());
+			fenetre.AfficherEvolution(map.getPresentMap());
 		}		
 	}
 	
-	public boolean[][] ControlerMap() {
-		int survie;
+	private boolean[][] ControlMap() { 
 		boolean tab[][] = new boolean[map.getLongueur()][map.getLargeur()];
 		for(int y = 1; y <= map.getLongueur()-2; y++) {
     		for(int x = 1; x <= map.getLargeur()-2; x++) {
-				survie = ControlerCellule(map.getMap()[y-1][x-1])
-				 + ControlerCellule(map.getMap()[y-1][x])
-				 + ControlerCellule(map.getMap()[y-1][x+1])
-				 + ControlerCellule(map.getMap()[y][x-1])
-				 + ControlerCellule(map.getMap()[y][x+1])
-				 + ControlerCellule(map.getMap()[y+1][x-1])
-				 + ControlerCellule(map.getMap()[y+1][x])
-				 + ControlerCellule(map.getMap()[y+1][x+1]);
-				
 				if(map.getChoixsurvie() == true){
-	    			tab[y][x] = Survie(survie);
+	    			tab[y][x] = Survie(CalculSurvie(x, y));
 				}else if(map.getChoixsurvie() == false){
-	    			tab[y][x] = Survie(survie, map.getMap()[y][x]);
+	    			tab[y][x] = Survie(CalculSurvie(x, y), map.getPresentMap()[y][x]);
 				}
     		}
     	} 
 		return tab;
 	}
 	
+	private int CalculSurvie(int x, int y) {
+			return ControlerCellule(map.getPresentMap()[y-1][x-1])
+		 + ControlerCellule(map.getPresentMap()[y-1][x])
+		 + ControlerCellule(map.getPresentMap()[y-1][x+1])
+		 + ControlerCellule(map.getPresentMap()[y][x-1])
+		 + ControlerCellule(map.getPresentMap()[y][x+1])
+		 + ControlerCellule(map.getPresentMap()[y+1][x-1])
+		 + ControlerCellule(map.getPresentMap()[y+1][x])
+		 + ControlerCellule(map.getPresentMap()[y+1][x+1]);
+	}
 	
-	public int ControlerCellule(boolean cellule) {
-		int var = 0;
-				
+	
+	private int ControlerCellule(boolean cellule) {				
 		if(cellule == true) {
-			var = 1;
+			return 1;
 		}if(cellule == false) {
-			var = 0;
+			return 0;
 		}
-		return var;
+		return 0;
 	}
 		
-	public boolean Survie(int survie) {
-		boolean bool = false;
+	private boolean Survie(int survie) {
+		
 		if(survie >= map.getCelluleadjmin() && survie <= map.getCelluleadjmax()) {
-			bool = true;
+			return true;
 		}else if(survie < map.getCelluleadjmin() && survie > map.getCelluleadjmax()) {
-			bool = false;
+			return false;
 		}
-		return bool;
+		return false;
 	}
 
 	
 	public boolean Survie(int survie, boolean etat) {
-		boolean bool = false;
 		if(etat == true && survie >= map.getCelluleadjmin() && survie <= map.getCelluleadjmax() ) {
-			bool = true;
+			return true;
 		}else if(etat == false && survie == map.getCelluleadjnaissance()) {
-			bool = true;
+			return true;
 		}
-		return bool;
+		return false;
 	}
 	
 
 	public Fenetre getFenetre() {
 		return fenetre;
 	}
-
 
 	public void setFenetre(Fenetre fenetre) {
 		this.fenetre = fenetre;

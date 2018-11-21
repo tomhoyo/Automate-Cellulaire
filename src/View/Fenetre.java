@@ -8,6 +8,7 @@ public class Fenetre extends JFrame{
 	
 	private static final long serialVersionUID = 2542229582075632318L;
 	Cellule cell;
+	int tempsDAttente;
 
 	public Fenetre(boolean tab[][],int longueurFenetre, int largeurFenetre, int longueur, int largeur, 
 					int longueurCellule, int largeurCellule, int ecartCelluleHorizontal, int ecartCelluleVertical, 
@@ -17,7 +18,7 @@ public class Fenetre extends JFrame{
 		setCell(new Cellule(tab, longueur, largeur, longueurCellule, largeurCellule, 
 							ecartCelluleHorizontal, ecartCelluleVertical, colorInterieur, VitesseChangeColor,
 							RedIntansity, GreenIntansity, BlueIntansity));
-		
+		this.tempsDAttente = tempsDAttente;
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(largeurFenetre, longueurFenetre);
 	    this.setLocationRelativeTo(null);
@@ -28,20 +29,16 @@ public class Fenetre extends JFrame{
 
 	}
 	
-	public void AfficherEvolution(boolean tab[][], int tempsDAttente) {
+	public void AfficherEvolution(boolean newMap[][]) {
 		try {
-	        Thread.sleep(tempsDAttente);
+	        Thread.sleep(this.tempsDAttente);
 	      } catch (InterruptedException e) {
 	        e.printStackTrace();
 	      }
 		
-	    cell.setBool(tab);
-	    ActualiserFenetre();
-	}
-
-
-	private void ActualiserFenetre() {
+	    cell.setBool(newMap);
 		cell.repaint();
+
 	}
 
 	public Cellule getCell() {

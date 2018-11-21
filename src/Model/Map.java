@@ -30,13 +30,12 @@ public class Map {
 	
 /////////////////////////////////////////
 	
-	private boolean map[][];
+	private boolean presentMap[][];
 	
 	public Map() {
 		
-		map = new boolean[getLongueur()][getLargeur()];
-		
-		setMap(InstancierMap());
+		presentMap = new boolean[getLongueur()][getLargeur()];
+		setPresentMap(InstancierMap());
 		
 		this.VitesseChangeColor[0] = 0;
 		this.VitesseChangeColor[1] = 1;
@@ -47,47 +46,47 @@ public class Map {
 
 	public boolean[][] InstancierMap() {
 		
-		map[(getLongueur()/2)-3][(getLargeur()/2)-3] = true;
-		map[(getLongueur()/2)-3][(getLargeur()/2)-2] = true;
-		map[(getLongueur()/2)-3][(getLargeur()/2)-1] = true;
-		map[(getLongueur()/2)-3][(getLargeur()/2)] = true;
-		map[(getLongueur()/2)-3][(getLargeur()/2)+1] = true;
+		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-3] = true;
+		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-2] = true;
+		presentMap[(getLongueur()/2)-3][(getLargeur()/2)-1] = true;
+		presentMap[(getLongueur()/2)-3][(getLargeur()/2)] = true;
+		presentMap[(getLongueur()/2)-3][(getLargeur()/2)+1] = true;
 
-		map[(getLongueur()/2)-2][(getLargeur()/2)-3] = true;
-		map[(getLongueur()/2)-2][(getLargeur()/2)-2] = true;
-		map[(getLongueur()/2)-2][(getLargeur()/2)-1] = true;
-		map[(getLongueur()/2)-2][(getLargeur()/2)] = true;
-		map[(getLongueur()/2)-2][(getLargeur()/2)+1] = true;
+		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-3] = true;
+		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-2] = true;
+		presentMap[(getLongueur()/2)-2][(getLargeur()/2)-1] = true;
+		presentMap[(getLongueur()/2)-2][(getLargeur()/2)] = true;
+		presentMap[(getLongueur()/2)-2][(getLargeur()/2)+1] = true;
 
-		map[(getLongueur()/2)-1][(getLargeur()/2)-3] = true;		
-		map[(getLongueur()/2)-1][(getLargeur()/2)-2] = true;
-		map[(getLongueur()/2)-1][(getLargeur()/2)-1] = true;
-		map[(getLongueur()/2)-1][(getLargeur()/2)] = true;
-		map[(getLongueur()/2)-1][(getLargeur()/2)+1] = true;
+		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-3] = true;		
+		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-2] = true;
+		presentMap[(getLongueur()/2)-1][(getLargeur()/2)-1] = true;
+		presentMap[(getLongueur()/2)-1][(getLargeur()/2)] = true;
+		presentMap[(getLongueur()/2)-1][(getLargeur()/2)+1] = true;
 		
-		map[(getLongueur()/2)][(getLargeur()/2)-3] = true;
-		map[(getLongueur()/2)][(getLargeur()/2)-2] = true;
-		map[(getLongueur()/2)][(getLargeur()/2)-1] = true;
-		map[(getLongueur()/2)][(getLargeur()/2)] = true;
-		map[(getLongueur()/2)][(getLargeur()/2)+1] = true;
+		presentMap[(getLongueur()/2)][(getLargeur()/2)-3] = true;
+		presentMap[(getLongueur()/2)][(getLargeur()/2)-2] = true;
+		presentMap[(getLongueur()/2)][(getLargeur()/2)-1] = true;
+		presentMap[(getLongueur()/2)][(getLargeur()/2)] = true;
+		presentMap[(getLongueur()/2)][(getLargeur()/2)+1] = true;
 		
-		map[(getLongueur()/2)+1][(getLargeur()/2)-3] = true;
-		map[(getLongueur()/2)+1][(getLargeur()/2)-2] = true;
-		map[(getLongueur()/2)+1][(getLargeur()/2)-1] = true;
-		map[(getLongueur()/2)+1][(getLargeur()/2)] = true;
-		map[(getLongueur()/2)+1][(getLargeur()/2)+1] = true;
+		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-3] = true;
+		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-2] = true;
+		presentMap[(getLongueur()/2)+1][(getLargeur()/2)-1] = true;
+		presentMap[(getLongueur()/2)+1][(getLargeur()/2)] = true;
+		presentMap[(getLongueur()/2)+1][(getLargeur()/2)+1] = true;
 
-    	return map;
+    	return presentMap;
 	}
 	
-	public boolean[][] getMap() {
-		return map;
+	public boolean[][] getPresentMap() {
+		return presentMap;
 	}
 
-	public void setMap(boolean map[][]) {
-		this.map = map;
+	public void setPresentMap(boolean map[][]) {
+		this.presentMap = map;
 	}
-
+	
 	public int getLongueur() {
 		return longueur;
 	}
@@ -187,5 +186,7 @@ public class Map {
 	public void setBlueIntansity(int blueIntansity) {
 		BlueIntansity = blueIntansity;
 	}
+
+	
 
 }

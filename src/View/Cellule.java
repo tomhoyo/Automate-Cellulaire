@@ -40,7 +40,6 @@ public class Cellule extends JPanel {
 		this.bool = new boolean[longueur][largeur];
 		this.tabBool = new boolean[longueur][largeur];
 		
-		setBool(tab);
 	}
 
 	public void paintComponent(Graphics g){ 
