@@ -23,7 +23,7 @@ public class Model {
 	private Color colorBackground = new Color(0, 0, 0);
 	private Color colorInterieur = new Color(0, 0, 0);
 	private int VitesseChangeColor[] = new int[4];
-	private int ViteChangCol = 2;
+	private int shooseVitesseChangeColor = 2;
 	private int RedIntansity = 255;
 	private int GreenIntansity = 0;
 	private int BlueIntansity = 0;
@@ -36,13 +36,18 @@ public class Model {
 		
 		presentMap = new boolean[getLongueur()][getLargeur()];
 		setPresentMap(InstancierMap());
+		InstancierVitesseChangeColor();
 		
+
+	}
+	
+	private void InstancierVitesseChangeColor() {
 		this.VitesseChangeColor[0] = 0;
 		this.VitesseChangeColor[1] = 1;
 		this.VitesseChangeColor[2] = 5;
 		this.VitesseChangeColor[3] = 15;
-
 	}
+	
 
 	public boolean[][] InstancierMap() {
 		
@@ -137,7 +142,7 @@ public class Model {
 	}
 
 	public int getVitesseChangeColor() {
-		return VitesseChangeColor[ViteChangCol];
+		return VitesseChangeColor[shooseVitesseChangeColor];
 	}
 
 	public int getRedIntansity() {
