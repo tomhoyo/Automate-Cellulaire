@@ -13,15 +13,8 @@ public class Model extends Observable{
 	private int celluleAdjNaissance = 1;
 	private boolean choixSurvie = false; // choix du type de model de survie
 //affecte la view
-	private int longueurFenetre = 739; // 716
-	private int largeurFenetre = 716; // 739
-	private int longueurCellule = 1; //finesse du trait
-	private int largeurCellule = 1;
-	private int ecartCelluleHorizontal = 1; // ecart entre chaque cellule
-	private int ecartCelluleVertical = 1;
-	private int tempsDAttente = 10; // temps d'attente entre chaques générations
+	private int tempsDAttente = 100; // temps d'attente entre chaques générations
 	private Color colorBackground = new Color(0, 0, 0);
-	private Color colorInterieur = new Color(0, 0, 0);
 	private int VitesseChangeColor[] = new int[4];
 	private int shooseVitesseChangeColor = 2;
 	private int RedIntansity = 255;
@@ -52,7 +45,11 @@ public class Model extends Observable{
 	
 
 	public boolean[][] InstancierMap() {
-		
+		for(int y = 1; y <= this.getHeight()-2; y++) {
+    		for(int x = 1; x <= this.getHeight()-2; x++) {
+				presentMap[y][x] = false;		
+    		}
+    	}
 		for(int x = -3; x <= 1; x++) {
 			for(int y = -3; y <= 1; y++) {
 				presentMap[(getHeight()/2)+x][(getHeight()/2)+y] = true;
@@ -60,6 +57,7 @@ public class Model extends Observable{
 		}
     	return presentMap;
 	}
+	////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////
 	
 	public void ControlMap() { 
@@ -117,6 +115,7 @@ public class Model extends Observable{
 	}
 	
 	////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////
 	
 	public boolean[][] getPresentMap() {
 		return presentMap;
@@ -146,49 +145,22 @@ public class Model extends Observable{
 		return choixSurvie;
 	}
 
-	public int getLongueurcellule() {
-		return longueurCellule;
-	}
-
-	public  int getLargeurcellule() {
-		return largeurCellule;
-	}
-
-	public int getEcartcellulehorizontal() {
-		return ecartCelluleHorizontal;
-	}
-
-	public int getEcartcellulevertical() {
-		return ecartCelluleVertical;
-	}
-
 	public int getTempsdattente() {
 		return tempsDAttente;
 	}
+	
+	public void setTempsDAttente(int tempsDAttente) {
+		this.tempsDAttente = tempsDAttente;
+	}
 
-	public Color getColorbackground() {
+	private Color getColorBackground() {
 		return colorBackground;
 	}
 
-	public Color getColorinterieur() {
-		return colorInterieur;
+	private void setColorBackground(int r, int g, int b) {
+		this.colorBackground = new Color(r, g, b);
 	}
 
-	public int getLongueurFenetre() {
-		return longueurFenetre;
-	}
-
-	public void setLongueurFenetre(int longueurFenetre) {
-		this.longueurFenetre = longueurFenetre;
-	}
-
-	public int getLargeurFenetre() {
-		return largeurFenetre;
-	}
-
-	public void setLargeurFenetre(int largeurFenetre) {
-		this.largeurFenetre = largeurFenetre;
-	}
 
 	public int getVitesseChangeColor() {
 		return VitesseChangeColor[shooseVitesseChangeColor];
@@ -222,9 +194,6 @@ public class Model extends Observable{
 		this.addObserver(o);
 	}
 	
-	/**
-	 * Notify the potential observers about an update
-	 */
 	private void notifyUpdate() {
 		this.setChanged();
 		this.notifyObservers();
@@ -245,5 +214,8 @@ public class Model extends Observable{
 	public int getWidth() {
 		return width;
 	}
+
+
+	
 
 }
