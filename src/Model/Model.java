@@ -8,8 +8,6 @@ import java.util.Observer;
 public class Model extends Observable{
 	 
 //affecte le controller
-	/*private int longueur = 700;
-	private int largeur = 700;*/
 	private int celluleAdjMin = 1;  // definit la forme 1-3
 	private int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
 	private int celluleAdjNaissance = 1;
@@ -43,8 +41,6 @@ public class Model extends Observable{
 		presentMap = new boolean[getHeight()][getHeight()];
 		setPresentMap(InstancierMap());
 		InstancierVitesseChangeColor();
-		
-
 	}
 	
 	private void InstancierVitesseChangeColor() {
@@ -133,14 +129,6 @@ public class Model extends Observable{
 			this.notifyUpdate();
 		}
 	}
-	
-	/*public int getLongueur() {
-		return longueur;
-	}
-
-	public int getLargeur() {
-		return largeur;
-	}*/
 
 	public int getCelluleadjmin() {
 		return celluleAdjMin;

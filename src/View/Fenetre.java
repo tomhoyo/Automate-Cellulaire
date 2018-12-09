@@ -17,8 +17,9 @@ public class Fenetre extends JFrame{
 		setCell(new Cellule(RedIntansity, GreenIntansity, BlueIntansity, model));
 		
 	    this.setTitle("Automate Cellulaire");
-	    this.setSize(cell.map.getWidth(), cell.map.getHeight());
+	    this.setSize(cell.map.getHeight() + 400, cell.map.getHeight());
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
 	    this.setBackground(colorBackground);        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	

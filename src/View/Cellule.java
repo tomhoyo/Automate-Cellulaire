@@ -33,6 +33,10 @@ public class Cellule extends JPanel implements Observer{
 	}
 
 	public void paintComponent(Graphics g){ 
+	    g.setColor(new Color(237, 217, 137));          
+		g.fillRect(map.getHeight(),0,map.getHeight() + 400, map.getHeight());
+		
+		
 		this.colorTrait = changeColor();
 		for(int y = 0; y <= map.getHeight()-1; y++) {
     		for(int x = 0; x <= map.getHeight()-1; x++) {
