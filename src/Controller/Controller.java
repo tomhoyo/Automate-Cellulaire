@@ -11,9 +11,7 @@ public class Controller {
 	
 	public Controller() throws IOException {
 		map = new Model();
-		
 		fenetre = new Fenetre(map);
-		
 		map.setObserver(fenetre.getCell());
 		
 		while(true) {

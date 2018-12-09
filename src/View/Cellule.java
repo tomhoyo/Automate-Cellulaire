@@ -40,7 +40,10 @@ public class Cellule extends JPanel implements Observer{
 	}
 
 	public void paintComponent(Graphics g){ 
+		g.setColor(Color.BLACK); 
+	    g.fillRect(0, 0, map.getHeight(), map.getHeight());
 
+		
 		this.colorTrait = changeColor();
 		for(int y = 0; y <= map.getHeight()-1; y++) {
     		for(int x = 0; x <= map.getHeight()-1; x++) {
@@ -48,13 +51,14 @@ public class Cellule extends JPanel implements Observer{
 		    			if(map.getPresentMap()[x][y] == true) {
 		        		    g.setColor(colorTrait);          
 		    			}else if(map.getPresentMap()[x][y] == false) {
-		        		    g.setColor(map.getColorbackground());          
+		        		    g.setColor(map.getColorBackground());          
 		    			}
 		    		    g.fillRect(y, x, 1, 1);
 				}
 			}
     	} 
-		
+	  
+
 		
 		g.setColor(new Color(237, 217, 137));          
 		g.fillRect(map.getHeight(),0,map.getHeight() + 400, map.getHeight());
@@ -77,63 +81,44 @@ public class Cellule extends JPanel implements Observer{
 	
 	Color changeColor() {
 		if(this.RedIntansity==255 && this.GreenIntansity<255 && this.BlueIntansity==0) {
-			this.GreenIntansity+=this.map.getVitesseChangeColor();
+			this.GreenIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}else if(this.RedIntansity>0 && this.GreenIntansity==255 && this.BlueIntansity==0) {
-			this.RedIntansity-=this.map.getVitesseChangeColor();
+			this.RedIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}else if(this.RedIntansity==0 && this.GreenIntansity==255 && this.BlueIntansity<255) {
-			this.BlueIntansity+=this.map.getVitesseChangeColor();
+			this.BlueIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}else if(this.RedIntansity==0 && this.GreenIntansity>0 && this.BlueIntansity==255) {
-			this.GreenIntansity-=this.map.getVitesseChangeColor();
+			this.GreenIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}else if(this.RedIntansity<255 && this.GreenIntansity==0 && this.BlueIntansity==255) {
-			this.RedIntansity+=this.map.getVitesseChangeColor();
+			this.RedIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}else if(this.RedIntansity==255 && this.GreenIntansity==0 && this.BlueIntansity>0) {
-			this.BlueIntansity-=this.map.getVitesseChangeColor();
+			this.BlueIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
 		}
+		
 		return new Color(this.RedIntansity, this.GreenIntansity, this.BlueIntansity);
 	}
 	
 	public void createFormulaire(Graphics g) {
-			
+		String[] box = {"1", "2", "3", "4", "5", "6", "7", "8"};
 		
-		JComboBox boxCelluleAdjMin = new JComboBox();
-	    boxCelluleAdjMin.addItem("1");
-	    boxCelluleAdjMin.addItem("2");
-	    boxCelluleAdjMin.addItem("3");
-	    boxCelluleAdjMin.addItem("4");
-	    boxCelluleAdjMin.addItem("5");
-	    boxCelluleAdjMin.addItem("6");
-	    boxCelluleAdjMin.addItem("7");
-	    boxCelluleAdjMin.addItem("8");
+		JComboBox boxCelluleAdjMin = new JComboBox(box);
+		boxCelluleAdjMin.setSelectedIndex(0);
 	    this.add(boxCelluleAdjMin);
 	    boxCelluleAdjMin.setBounds(map.getHeight() + 310, 45, 50, 25);
 	    
-	    JComboBox boxCelluleAdjMax = new JComboBox();
-	    boxCelluleAdjMax.addItem("1");
-	    boxCelluleAdjMax.addItem("2");
-	    boxCelluleAdjMax.addItem("3");
-	    boxCelluleAdjMax.addItem("4");
-	    boxCelluleAdjMax.addItem("5");
-	    boxCelluleAdjMax.addItem("6");
-	    boxCelluleAdjMax.addItem("7");
-	    boxCelluleAdjMax.addItem("8");
+	    JComboBox boxCelluleAdjMax = new JComboBox(box);
+	    boxCelluleAdjMax.setSelectedIndex(4);
 	    this.add(boxCelluleAdjMax);
 	    boxCelluleAdjMax.setBounds(map.getHeight() + 350, 45+60, 50, 25);
 	    
 	    JComboBox boxModeSurvie = new JComboBox();
-	    boxModeSurvie.addItem("1");
-	    boxModeSurvie.addItem("2");
+	    boxModeSurvie.addItem("true");
+	    boxModeSurvie.addItem("false");
+	    boxModeSurvie.setSelectedIndex(1);
 	    this.add(boxModeSurvie);
 	    boxModeSurvie.setBounds(map.getHeight() + 135, 45+ 60*2, 50, 25);
 	    
-	    JComboBox boxcelluleAdjNaissance = new JComboBox();
-	    boxcelluleAdjNaissance.addItem("1");
-	    boxcelluleAdjNaissance.addItem("2");
-	    boxcelluleAdjNaissance.addItem("3");
-	    boxcelluleAdjNaissance.addItem("4");
-	    boxcelluleAdjNaissance.addItem("5");
-	    boxcelluleAdjNaissance.addItem("6");
-	    boxcelluleAdjNaissance.addItem("7");
-	    boxcelluleAdjNaissance.addItem("8");
+	    JComboBox boxcelluleAdjNaissance = new JComboBox(box);
+	    boxcelluleAdjNaissance.setSelectedIndex(0);
 	    this.add(boxcelluleAdjNaissance);
 	    boxcelluleAdjNaissance.setBounds(map.getHeight() + 350, 45+60*3, 50, 25);
 	    
@@ -141,17 +126,14 @@ public class Cellule extends JPanel implements Observer{
 	    inputSleep.setText("30");
 	    this.add(inputSleep);
 	    inputSleep.setBounds(map.getHeight() + 300, 45 + 60*4, 50, 25);
-
 	    
 	    TextField inputBackgroundRed = new TextField("0", 5);
 	    this.add(inputBackgroundRed);
 	    inputBackgroundRed.setBounds(map.getHeight() + 140 + 70*0, 45 + 60*5, 50, 25);
-
 	    
 	    TextField inputBackgroundGreen = new TextField("0", 5);
 	    this.add(inputBackgroundGreen);
 	    inputBackgroundGreen.setBounds(map.getHeight() + 140 + 70*1, 45+60*5, 50, 25);
-
 	    
 	    TextField inputBackgroundBlue = new TextField("0", 5);
 	    this.add(inputBackgroundBlue);
@@ -161,26 +143,21 @@ public class Cellule extends JPanel implements Observer{
 	    inputTraitRed.setText("255");
 	    this.add(inputTraitRed);
 	    inputTraitRed.setBounds(map.getHeight() + 200 + 70*0, 45 + 60*6, 50, 25);
-
 	    
 	    TextField inputTraitGreen = new TextField("0", 5);
 	    this.add(inputTraitGreen);
 	    inputTraitGreen.setBounds(map.getHeight() + 200 + 70*1, 45+60*6, 50, 25);
 
-	    
 	    TextField inputTraitBlue = new TextField("0", 5);
 	    this.add(inputTraitBlue);
 	    inputTraitBlue.setBounds(map.getHeight() + 200 + 70*2, 45+60*6, 50, 25);
 	    
 	    JComboBox boxVitesseChangeColor = new JComboBox();
+	    boxVitesseChangeColor.addItem("0");
 	    boxVitesseChangeColor.addItem("1");
 	    boxVitesseChangeColor.addItem("2");
 	    boxVitesseChangeColor.addItem("3");
-	    boxVitesseChangeColor.addItem("4");
-	    boxVitesseChangeColor.addItem("5");
-	    boxVitesseChangeColor.addItem("6");
-	    boxVitesseChangeColor.addItem("7");
-	    boxVitesseChangeColor.addItem("8");
+	    boxVitesseChangeColor.setSelectedIndex(1);
 	    this.add(boxVitesseChangeColor);
 	    boxVitesseChangeColor.setBounds(map.getHeight() + 245, 45+60*7, 50, 25);
 	    
@@ -188,14 +165,24 @@ public class Cellule extends JPanel implements Observer{
 	    Button button = new Button("Activer l'automate");
 	    button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				map.setCelluleAdjMin(Integer.parseInt((String)boxCelluleAdjMin.getSelectedItem()));
+				map.setCelluleAdjMax(Integer.parseInt((String)boxCelluleAdjMax.getSelectedItem()));
+				if((String)boxModeSurvie.getSelectedItem() == "1") {
+					map.setChoixSurvie(true);
+				}else if((String)boxModeSurvie.getSelectedItem() == "2"){
+					map.setChoixSurvie(false);
+				}
+				map.setCelluleAdjNaissance(Integer.parseInt((String)boxcelluleAdjNaissance.getSelectedItem()));
 				map.setTempsDAttente(Integer.parseInt(inputSleep.getText()));
-				map.setsetColorBackground(Integer.parseInt(inputBackgroundRed.getText()), 
-						Integer.parseInt(inputBackgroundGreen.getText())
+				map.setColorBackground(Integer.parseInt(inputBackgroundRed.getText()), 
+						Integer.parseInt(inputBackgroundGreen.getText()),
 						Integer.parseInt(inputBackgroundBlue.getText()));
+				map.setRedIntansity(Integer.parseInt(inputTraitRed.getText()));
+				map.setGreenIntansity(Integer.parseInt(inputTraitGreen.getText()));
+				map.setBlueIntansity(Integer.parseInt(inputTraitBlue.getText()));
+				map.setShooseVitesseChangeColor(Integer.parseInt((String)boxVitesseChangeColor.getSelectedItem()));
 				
-				Integer.parseInt(inputTraitRed.getText());
-				Integer.parseInt(inputTraitGreen.getText());
-				Integer.parseInt(inputTraitBlue.getText());
+				map.InstancierMap();
 			}
 		});
 	    this.add(button);

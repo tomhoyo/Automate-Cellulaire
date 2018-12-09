@@ -23,7 +23,7 @@ public class Model extends Observable{
 	
 	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = (int)dimension.getHeight() - 40;
-	private int width  = (int)dimension.getWidth();
+	private int width = (int)dimension.getWidth();
 	
 /////////////////////////////////////////
 	
@@ -32,19 +32,19 @@ public class Model extends Observable{
 	public Model() {
 		setPreviousMap(new boolean[getHeight()][getHeight()]);
 		presentMap = new boolean[getHeight()][getHeight()];
-		setPresentMap(InstancierMap());
+		InstancierMap();
 		InstancierVitesseChangeColor();
 	}
 	
 	private void InstancierVitesseChangeColor() {
-		this.VitesseChangeColor[0] = 0;
-		this.VitesseChangeColor[1] = 1;
-		this.VitesseChangeColor[2] = 5;
-		this.VitesseChangeColor[3] = 15;
+		this.getVitesseChangeColor()[0] = 0;
+		this.getVitesseChangeColor()[1] = 1;
+		this.getVitesseChangeColor()[2] = 5;
+		this.getVitesseChangeColor()[3] = 15;
 	}
 	
 
-	public boolean[][] InstancierMap() {
+	public void InstancierMap() {
 		for(int y = 1; y <= this.getHeight()-2; y++) {
     		for(int x = 1; x <= this.getHeight()-2; x++) {
 				presentMap[y][x] = false;		
@@ -55,7 +55,7 @@ public class Model extends Observable{
 				presentMap[(getHeight()/2)+x][(getHeight()/2)+y] = true;
 			}
 		}
-    	return presentMap;
+		setPresentMap(presentMap);
 	}
 	////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@ public class Model extends Observable{
 		boolean tab[][] = new boolean[this.getHeight()][this.getHeight()];
 		for(int y = 1; y <= this.getHeight()-2; y++) {
     		for(int x = 1; x <= this.getHeight()-2; x++) {
-				if(this.getChoixsurvie() == true){
+				if(this.getChoixSurvie() == true){
 	    			tab[y][x] = Survie(CalculSurvie(x, y));
-				}else if(this.getChoixsurvie() == false){
+				}else if(this.getChoixSurvie() == false){
 	    			tab[y][x] = Survie(CalculSurvie(x, y), this.getPresentMap()[y][x]);
 				}
     		}
@@ -96,9 +96,9 @@ public class Model extends Observable{
 	}
 		
 	private boolean Survie(int survie) {
-		if(survie >= this.getCelluleadjmin() && survie <= this.getCelluleadjmax()) {
+		if(survie >= this.getCelluleAdjMin() && survie <= this.getCelluleAdjMax()) {
 			return true;
-		}else if(survie < this.getCelluleadjmin() && survie > this.getCelluleadjmax()) {
+		}else if(survie < this.getCelluleAdjMin() && survie > this.getCelluleAdjMax()) {
 			return false;
 		}
 		return false;
@@ -106,9 +106,9 @@ public class Model extends Observable{
 
 	
 	public boolean Survie(int survie, boolean etat) {
-		if(etat == true && survie >= this.getCelluleadjmin() && survie <= this.getCelluleadjmax() ) {
+		if(etat == true && survie >= this.getCelluleAdjMin() && survie <= this.getCelluleAdjMax() ) {
 			return true;
-		}else if(etat == false && survie == this.getCelluleadjnaissance()) {
+		}else if(etat == false && survie == this.getCelluleAdjNaissance()) {
 			return true;
 		}
 		return false;
@@ -129,20 +129,37 @@ public class Model extends Observable{
 		}
 	}
 
-	public int getCelluleadjmin() {
+	public int getCelluleAdjMin() {
 		return celluleAdjMin;
 	}
 
-	public int getCelluleadjmax() {
+	public void setCelluleAdjMin(int celluleAdjMin) {
+		this.celluleAdjMin = celluleAdjMin;
+	}
+
+	public int getCelluleAdjMax() {
 		return celluleAdjMax;
 	}
 
-	public int getCelluleadjnaissance() {
+	public void setCelluleAdjMax(int celluleAdjMax) {
+		this.celluleAdjMax = celluleAdjMax;
+	}
+
+	public int getCelluleAdjNaissance() {
 		return celluleAdjNaissance;
 	}
 
-	public boolean getChoixsurvie() {
+	public void setCelluleAdjNaissance(int celluleAdjNaissance) {
+		this.celluleAdjNaissance = celluleAdjNaissance;
+	}
+
+
+	public boolean getChoixSurvie() {
 		return choixSurvie;
+	}
+
+	public void setChoixSurvie(boolean choixSurvie) {
+		this.choixSurvie = choixSurvie;
 	}
 
 	public int getTempsdattente() {
@@ -152,19 +169,8 @@ public class Model extends Observable{
 	public void setTempsDAttente(int tempsDAttente) {
 		this.tempsDAttente = tempsDAttente;
 	}
-
-	private Color getColorBackground() {
-		return colorBackground;
-	}
-
-	private void setColorBackground(int r, int g, int b) {
-		this.colorBackground = new Color(r, g, b);
-	}
-
-
-	public int getVitesseChangeColor() {
-		return VitesseChangeColor[shooseVitesseChangeColor];
-	}
+	
+	
 
 	public int getRedIntansity() {
 		return RedIntansity;
@@ -215,6 +221,39 @@ public class Model extends Observable{
 		return width;
 	}
 
+	public Color getColorBackground() {
+		return colorBackground;
+	}
+
+	public void setColorBackground(int r, int g, int b) {
+		this.colorBackground = new Color(r, g, b);
+	}
+
+	public int[] getVitesseChangeColor() {
+		return VitesseChangeColor;
+	}
+
+	public void setVitesseChangeColor(int vitesseChangeColor[]) {
+		VitesseChangeColor = vitesseChangeColor;
+	}
+
+	public int getShooseVitesseChangeColor() {
+		return shooseVitesseChangeColor;
+	}
+
+	public void setShooseVitesseChangeColor(int shooseVitesseChangeColor) {
+		this.shooseVitesseChangeColor = shooseVitesseChangeColor;
+	}
+
+
+
+	
+
+	
+	
+
+	
+	
 
 	
 

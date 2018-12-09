@@ -17,7 +17,7 @@ public class Fenetre extends JFrame{
 	    this.setSize(cell.map.getHeight() + 500, cell.map.getHeight());
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
-	    this.setBackground(cell.map.getColorbackground());        
+	    this.setBackground(cell.map.getColorBackground());        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	
 
