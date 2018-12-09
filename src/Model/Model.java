@@ -121,16 +121,13 @@ public class Model extends Observable{
 	public boolean[][] getPresentMap() {
 		return presentMap;
 	}
-
+	
 	public void setPresentMap(boolean map[][]) {
-		
 		this.setPreviousMap(presentMap);
 		this.presentMap = map;
-		if(map != getPreviousMap()) {
-			this.setChanged();
-			this.notifyObservers();
+		if(getPresentMap() == getPreviousMap()) {
+			this.notifyUpdate();
 		}
-
 	}
 	
 	public int getLongueur() {

@@ -83,19 +83,15 @@ public class Cellule extends JPanel implements Observer{
 		this.tabBool = tabBool;
 	}
 
-	int x = 0;
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		x++;
-		System.out.println(x);
 		try {
-	        Thread.sleep(10);
+	        Thread.sleep(0);
 		} catch (InterruptedException e) {
 	        e.printStackTrace();
 		}
 		this.setBool(map.getPresentMap());
 		this.repaint();
-		map.ControlMap();
 	}
 
      
