@@ -1,78 +1,68 @@
 package View;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JPanel;
+
+import Model.Model;
  
-public class Cellule extends JPanel {
+public class Cellule extends JPanel implements Observer{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4751793395101789708L;
+	Model map;
 	private boolean bool[][];
 	private boolean tabBool[][];
-	int longueur;
-	int largeur;
-	int longueurCellule;
-	int largeurCellule;
-	int ecartCelluleHorizontal;
-	int ecartCelluleVertical;
 	Color colorTrait;
-	Color colorInterieur;
 	int VitesseChangeColor;
 	int RedIntansity = 255, GreenIntansity, BlueIntansity; 
 	
-	public Cellule(boolean tab[][], int longueur, int largeur, int longueurCellule, int largeurCellule, 
-					int ecartCelluleHorizontal, int ecartCelluleVertical, Color colorInterieur, int VitesseChangeColor,
-					int RedIntansity, int GreenIntansity, int BlueIntansity) {
+	public Cellule(int RedIntansity, int GreenIntansity, int BlueIntansity, Model map) {
 		
-		this.BlueIntansity = BlueIntansity;
-		this.GreenIntansity = GreenIntansity;
-		this.RedIntansity = RedIntansity;
-		this.VitesseChangeColor = VitesseChangeColor;
-		this.colorInterieur = colorInterieur;
-		this.longueurCellule = longueurCellule;
-		this.largeurCellule = largeurCellule;
-		this.ecartCelluleHorizontal = ecartCelluleHorizontal;
-		this.ecartCelluleVertical = ecartCelluleVertical;
-		this.longueur = longueur;
-		this.largeur = largeur;
-		this.bool = new boolean[longueur][largeur];
-		this.tabBool = new boolean[longueur][largeur];
+		this.map = map;
+		this.BlueIntansity = map.getBlueIntansity();
+		this.GreenIntansity =  map.getGreenIntansity();
+		this.RedIntansity =  map.getRedIntansity();
+		this.bool = new boolean[map.getLongueur()][map.getLargeur()];
+		this.tabBool = new boolean[map.getLongueur()][map.getLargeur()];
 		
 	}
 
 	public void paintComponent(Graphics g){ 
 		this.colorTrait = changeColor();
-		for(int y = 0; y <= longueur-1; y++) {
-    		for(int x = 0; x <= largeur-1; x++) {
-	    		if(getBool()[y][x] != getTabBool()[y][x] ) {
-		    			if(getBool()[x][y] == true) {
+		for(int y = 0; y <= map.getLongueur()-1; y++) {
+    		for(int x = 0; x <= map.getLargeur()-1; x++) {
+	    		if(map.getPresentMap()[y][x] != map.getPreviousMap()[y][x] ) {
+		    			if(map.getPresentMap()[x][y] == true) {
 		        		    g.setColor(colorTrait);          
-		    			}else if(getBool()[x][y] == false) {
-		        		    g.setColor(colorInterieur);          
+		    			}else if(map.getPresentMap()[x][y] == false) {
+		        		    g.setColor(map.getColorinterieur());          
 		    			}
-		    		    g.fillRect(y * ecartCelluleHorizontal, x * ecartCelluleVertical,
-		    		    		largeurCellule, longueurCellule);
+		    		    g.fillRect(y * map.getEcartcellulehorizontal(), x * map.getEcartcellulevertical(),
+		    		    		map.getLargeurcellule(), map.getLongueurcellule());
 				}
 			}
     	} 
-		setTabBool(getBool());
+		
 	}
 	
 	Color changeColor() {
 		if(this.RedIntansity==255 && this.GreenIntansity<255 && this.BlueIntansity==0) {
-			this.GreenIntansity+=this.VitesseChangeColor;
+			this.GreenIntansity+=this.map.getVitesseChangeColor();
 		}else if(this.RedIntansity>0 && this.GreenIntansity==255 && this.BlueIntansity==0) {
-			this.RedIntansity-=this.VitesseChangeColor;
+			this.RedIntansity-=this.map.getVitesseChangeColor();
 		}else if(this.RedIntansity==0 && this.GreenIntansity==255 && this.BlueIntansity<255) {
-			this.BlueIntansity+=this.VitesseChangeColor;
+			this.BlueIntansity+=this.map.getVitesseChangeColor();
 		}else if(this.RedIntansity==0 && this.GreenIntansity>0 && this.BlueIntansity==255) {
-			this.GreenIntansity-=this.VitesseChangeColor;
+			this.GreenIntansity-=this.map.getVitesseChangeColor();
 		}else if(this.RedIntansity<255 && this.GreenIntansity==0 && this.BlueIntansity==255) {
-			this.RedIntansity+=this.VitesseChangeColor;
+			this.RedIntansity+=this.map.getVitesseChangeColor();
 		}else if(this.RedIntansity==255 && this.GreenIntansity==0 && this.BlueIntansity>0) {
-			this.BlueIntansity-=this.VitesseChangeColor;
+			this.BlueIntansity-=this.map.getVitesseChangeColor();
 		}
 		return new Color(this.RedIntansity, this.GreenIntansity, this.BlueIntansity);
 	}
@@ -91,6 +81,17 @@ public class Cellule extends JPanel {
 
 	public void setTabBool(boolean tabBool[][]) {
 		this.tabBool = tabBool;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		try {
+	        Thread.sleep(10);
+		} catch (InterruptedException e) {
+	        e.printStackTrace();
+		}
+		this.setBool(map.getPresentMap());
+		this.repaint();
 	}
 
      

@@ -1,8 +1,10 @@
 package Model;
 
 import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Model {
+public class Model extends Observable{
 	 
 //affecte le controller
 	private int longueur = 700; // longueur et largeur doivent etres identiques
@@ -31,9 +33,9 @@ public class Model {
 /////////////////////////////////////////
 	
 	private boolean presentMap[][];
-	
+	private boolean previousMap[][];
 	public Model() {
-		
+		setPreviousMap(new boolean[getLongueur()][getLargeur()]);
 		presentMap = new boolean[getLongueur()][getLargeur()];
 		setPresentMap(InstancierMap());
 		InstancierVitesseChangeColor();
@@ -56,8 +58,6 @@ public class Model {
 				presentMap[(getLongueur()/2)+x][(getLargeur()/2)+y] = true;
 			}
 		}
-		
-
     	return presentMap;
 	}
 	
@@ -66,7 +66,10 @@ public class Model {
 	}
 
 	public void setPresentMap(boolean map[][]) {
+		this.setPreviousMap(presentMap);
 		this.presentMap = map;
+		this.notifyUpdate();
+
 	}
 	
 	public int getLongueur() {
@@ -169,6 +172,25 @@ public class Model {
 		BlueIntansity = blueIntansity;
 	}
 
+	public void setObserver(Observer o) {
+		this.addObserver(o);
+	}
+	
+	/**
+	 * Notify the potential observers about an update
+	 */
+	private void notifyUpdate() {
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public boolean[][] getPreviousMap() {
+		return previousMap;
+	}
+
+	private void setPreviousMap(boolean previousMap[][]) {
+		this.previousMap = previousMap;
+	}
 	
 
 }

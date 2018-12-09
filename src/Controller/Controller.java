@@ -11,16 +11,19 @@ public class Controller {
 	
 	public Controller() throws IOException {
 		map = new Model();
-		fenetre = new Fenetre(map.getPresentMap(),map.getLongueurFenetre(), map.getLargeurFenetre(), map.getLongueur(), 
-				map.getLargeur(), map.getLongueurcellule(), map.getLargeurcellule(), map.getEcartcellulehorizontal(), 
-				map.getEcartcellulevertical(), map.getTempsdattente(), map.getColorbackground(), map.getColorinterieur(), map.getVitesseChangeColor(),
-				map.getRedIntansity(), map.getGreenIntansity(), map.getBlueIntansity());
+		fenetre = new Fenetre(map.getLongueurFenetre(), map.getLargeurFenetre(), map.getTempsdattente(), map.getColorbackground(),
+				map.getRedIntansity(), map.getGreenIntansity(), map.getBlueIntansity(), map);
+		
+		map.setObserver(fenetre.getCell());
 		
 		for(int numGeneration = 0; numGeneration < map.getNbrgeneration(); numGeneration++) {
 			map.setPresentMap(ControlMap());
-			fenetre.AfficherEvolution(map.getPresentMap());
 		}		
 	}
+	
+	
+	
+	
 	
 	private boolean[][] ControlMap() { 
 		boolean tab[][] = new boolean[map.getLongueur()][map.getLargeur()];
