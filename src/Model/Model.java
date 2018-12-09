@@ -12,7 +12,7 @@ public class Model extends Observable{
 	private int celluleAdjMin = 1;  // definit la forme 1-3
 	private int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
 	private int celluleAdjNaissance = 1;
-	private int nbrGeneration = 3000; // definit la taille
+	//private int nbrGeneration = 3; // definit la taille
 	private boolean choixSurvie = false; // choix du type de model de survie
 //affecte la view
 	private int longueurFenetre = 739; // 716
@@ -60,15 +60,76 @@ public class Model extends Observable{
 		}
     	return presentMap;
 	}
+	////////////////////////////////////////////////////////////////
+	
+	public void ControlMap() { 
+		boolean tab[][] = new boolean[this.getLongueur()][this.getLargeur()];
+		for(int y = 1; y <= this.getLongueur()-2; y++) {
+    		for(int x = 1; x <= this.getLargeur()-2; x++) {
+				if(this.getChoixsurvie() == true){
+	    			tab[y][x] = Survie(CalculSurvie(x, y));
+				}else if(this.getChoixsurvie() == false){
+	    			tab[y][x] = Survie(CalculSurvie(x, y), this.getPresentMap()[y][x]);
+				}
+    		}
+    	} 
+		setPresentMap(tab);
+	}
+	
+	private int CalculSurvie(int x, int y) {
+			return ControlerCellule(this.getPresentMap()[y-1][x-1])
+		 + ControlerCellule(this.getPresentMap()[y-1][x])
+		 + ControlerCellule(this.getPresentMap()[y-1][x+1])
+		 + ControlerCellule(this.getPresentMap()[y][x-1])
+		 + ControlerCellule(this.getPresentMap()[y][x+1])
+		 + ControlerCellule(this.getPresentMap()[y+1][x-1])
+		 + ControlerCellule(this.getPresentMap()[y+1][x])
+		 + ControlerCellule(this.getPresentMap()[y+1][x+1]);
+	}
+	
+	
+	private int ControlerCellule(boolean cellule) {				
+		if(cellule == true) {
+			return 1;
+		}if(cellule == false) {
+			return 0;
+		}
+		return 0;
+	}
+		
+	private boolean Survie(int survie) {
+		if(survie >= this.getCelluleadjmin() && survie <= this.getCelluleadjmax()) {
+			return true;
+		}else if(survie < this.getCelluleadjmin() && survie > this.getCelluleadjmax()) {
+			return false;
+		}
+		return false;
+	}
+
+	
+	public boolean Survie(int survie, boolean etat) {
+		if(etat == true && survie >= this.getCelluleadjmin() && survie <= this.getCelluleadjmax() ) {
+			return true;
+		}else if(etat == false && survie == this.getCelluleadjnaissance()) {
+			return true;
+		}
+		return false;
+	}
+	
+	////////////////////////////////////////////////////////////////
 	
 	public boolean[][] getPresentMap() {
 		return presentMap;
 	}
 
 	public void setPresentMap(boolean map[][]) {
+		
 		this.setPreviousMap(presentMap);
 		this.presentMap = map;
-		this.notifyUpdate();
+		if(map != getPreviousMap()) {
+			this.setChanged();
+			this.notifyObservers();
+		}
 
 	}
 	
@@ -90,10 +151,6 @@ public class Model extends Observable{
 
 	public int getCelluleadjnaissance() {
 		return celluleAdjNaissance;
-	}
-
-	public int getNbrgeneration() {
-		return nbrGeneration;
 	}
 
 	public boolean getChoixsurvie() {
