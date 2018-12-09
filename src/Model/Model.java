@@ -125,7 +125,7 @@ public class Model extends Observable{
 	public void setPresentMap(boolean map[][]) {
 		this.setPreviousMap(presentMap);
 		this.presentMap = map;
-		if(getPresentMap() == getPreviousMap()) {
+		if(getPresentMap() != getPreviousMap()) {
 			this.notifyUpdate();
 		}
 	}

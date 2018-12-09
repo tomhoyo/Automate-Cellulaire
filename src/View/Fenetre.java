@@ -12,12 +12,11 @@ public class Fenetre extends JFrame{
 	Cellule cell;
 	int tempsDAttente;
 
-	public Fenetre(int longueurFenetre, int largeurFenetre, int tempsDAttente, Color colorBackground,
+	public Fenetre(int longueurFenetre, int largeurFenetre, Color colorBackground,
 					int RedIntansity, int GreenIntansity, int BlueIntansity, Model model) {
 		
 		setCell(new Cellule(RedIntansity, GreenIntansity, BlueIntansity, model));
 		
-		this.tempsDAttente = tempsDAttente;
 	    this.setTitle("Automate Cellulaire");
 	    this.setSize(largeurFenetre, longueurFenetre);
 	    this.setLocationRelativeTo(null);
@@ -25,18 +24,6 @@ public class Fenetre extends JFrame{
 	    this.setBackground(colorBackground);        
 	    this.setContentPane(getCell());
 	    this.setVisible(true);	
-
-	}
-	
-	public void AfficherEvolution(boolean newMap[][]) {
-		try {
-	        Thread.sleep(this.tempsDAttente);
-	      } catch (InterruptedException e) {
-	        e.printStackTrace();
-	      }
-		
-	    cell.setBool(newMap);
-		cell.repaint();
 
 	}
 

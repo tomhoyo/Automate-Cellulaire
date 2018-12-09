@@ -11,7 +11,7 @@ public class Controller {
 	
 	public Controller() throws IOException {
 		map = new Model();
-		fenetre = new Fenetre(map.getLongueurFenetre(), map.getLargeurFenetre(), map.getTempsdattente(), map.getColorbackground(),
+		fenetre = new Fenetre(map.getLongueurFenetre(), map.getLargeurFenetre(), map.getColorbackground(),
 				map.getRedIntansity(), map.getGreenIntansity(), map.getBlueIntansity(), map);
 		
 		map.setObserver(fenetre.getCell());
