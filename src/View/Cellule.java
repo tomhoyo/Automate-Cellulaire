@@ -27,15 +27,15 @@ public class Cellule extends JPanel implements Observer{
 		this.BlueIntansity = map.getBlueIntansity();
 		this.GreenIntansity =  map.getGreenIntansity();
 		this.RedIntansity =  map.getRedIntansity();
-		this.bool = new boolean[map.getLongueur()][map.getLargeur()];
-		this.tabBool = new boolean[map.getLongueur()][map.getLargeur()];
+		this.bool = new boolean[map.getHeight()][map.getHeight()];
+		this.tabBool = new boolean[map.getHeight()][map.getHeight()];
 		
 	}
 
 	public void paintComponent(Graphics g){ 
 		this.colorTrait = changeColor();
-		for(int y = 0; y <= map.getLongueur()-1; y++) {
-    		for(int x = 0; x <= map.getLargeur()-1; x++) {
+		for(int y = 0; y <= map.getHeight()-1; y++) {
+    		for(int x = 0; x <= map.getHeight()-1; x++) {
 	    		if(map.getPresentMap()[y][x] != map.getPreviousMap()[y][x] ) {
 		    			if(map.getPresentMap()[x][y] == true) {
 		        		    g.setColor(colorTrait);          

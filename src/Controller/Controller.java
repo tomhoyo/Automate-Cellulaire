@@ -25,6 +25,7 @@ public class Controller {
 	
 	
 	
+	
 	/*private boolean[][] ControlMap() { 
 		boolean tab[][] = new boolean[map.getLongueur()][map.getLargeur()];
 		for(int y = 1; y <= map.getLongueur()-2; y++) {

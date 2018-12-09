@@ -1,18 +1,18 @@
 package Model;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 
 public class Model extends Observable{
 	 
 //affecte le controller
-	private int longueur = 700; // longueur et largeur doivent etres identiques
-	private int largeur = 700;
+	/*private int longueur = 700;
+	private int largeur = 700;*/
 	private int celluleAdjMin = 1;  // definit la forme 1-3
 	private int celluleAdjMax = 5; // definit le fond toujours surperieur à "celluleAdjMin"
 	private int celluleAdjNaissance = 1;
-	//private int nbrGeneration = 3; // definit la taille
 	private boolean choixSurvie = false; // choix du type de model de survie
 //affecte la view
 	private int longueurFenetre = 739; // 716
@@ -30,13 +30,17 @@ public class Model extends Observable{
 	private int GreenIntansity = 0;
 	private int BlueIntansity = 0;
 	
+	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = (int)dimension.getHeight() - 40;
+	private int width  = (int)dimension.getWidth();
+	
 /////////////////////////////////////////
 	
 	private boolean presentMap[][];
 	private boolean previousMap[][];
 	public Model() {
-		setPreviousMap(new boolean[getLongueur()][getLargeur()]);
-		presentMap = new boolean[getLongueur()][getLargeur()];
+		setPreviousMap(new boolean[getHeight()][getHeight()]);
+		presentMap = new boolean[getHeight()][getHeight()];
 		setPresentMap(InstancierMap());
 		InstancierVitesseChangeColor();
 		
@@ -55,7 +59,7 @@ public class Model extends Observable{
 		
 		for(int x = -3; x <= 1; x++) {
 			for(int y = -3; y <= 1; y++) {
-				presentMap[(getLongueur()/2)+x][(getLargeur()/2)+y] = true;
+				presentMap[(getHeight()/2)+x][(getHeight()/2)+y] = true;
 			}
 		}
     	return presentMap;
@@ -63,9 +67,9 @@ public class Model extends Observable{
 	////////////////////////////////////////////////////////////////
 	
 	public void ControlMap() { 
-		boolean tab[][] = new boolean[this.getLongueur()][this.getLargeur()];
-		for(int y = 1; y <= this.getLongueur()-2; y++) {
-    		for(int x = 1; x <= this.getLargeur()-2; x++) {
+		boolean tab[][] = new boolean[this.getHeight()][this.getHeight()];
+		for(int y = 1; y <= this.getHeight()-2; y++) {
+    		for(int x = 1; x <= this.getHeight()-2; x++) {
 				if(this.getChoixsurvie() == true){
 	    			tab[y][x] = Survie(CalculSurvie(x, y));
 				}else if(this.getChoixsurvie() == false){
@@ -130,13 +134,13 @@ public class Model extends Observable{
 		}
 	}
 	
-	public int getLongueur() {
+	/*public int getLongueur() {
 		return longueur;
 	}
 
 	public int getLargeur() {
 		return largeur;
-	}
+	}*/
 
 	public int getCelluleadjmin() {
 		return celluleAdjMin;
@@ -245,6 +249,13 @@ public class Model extends Observable{
 	private void setPreviousMap(boolean previousMap[][]) {
 		this.previousMap = previousMap;
 	}
-	
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
 
 }
