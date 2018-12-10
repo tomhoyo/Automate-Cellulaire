@@ -43,14 +43,15 @@ public class Cellule extends JPanel implements Observer{
 		this.colorTrait = changeColor();
 		for(int y = 0; y <= map.getHeight()-1; y++) {
     		for(int x = 0; x <= map.getHeight()-1; x++) {
-	    		if(map.getPresentMap()[y][x] != map.getPreviousMap()[y][x] ) {
+    			//if(map.getPresentMap()[y][x] != map.getPreviousMap()[y][x] ) {
 		    			if(map.getPresentMap()[x][y] == true) {
-		        		    g.setColor(colorTrait);          
+		        		    g.setColor(colorTrait);
+		        		    
 		    			}else if(map.getPresentMap()[x][y] == false) {
 		        		    g.setColor(map.getColorBackground());          
 		    			}
 		    		    g.fillRect(y, x, 1, 1);
-				}
+				//}
 			}
     	} 
 
@@ -91,6 +92,7 @@ public class Cellule extends JPanel implements Observer{
 	}
 	
 	public void createFormulaire(Graphics g) {
+	    
 		/*g.setColor(new Color(237, 217, 137));          
 		g.fillRect(map.getHeight(),0,map.getHeight() + 400, map.getHeight());
 		g.setColor(Color.BLACK);
@@ -109,54 +111,54 @@ public class Cellule extends JPanel implements Observer{
 		JComboBox boxCelluleAdjMin = new JComboBox(box);
 		boxCelluleAdjMin.setSelectedIndex(0);
 	    this.add(boxCelluleAdjMin);
-	    boxCelluleAdjMin.setBounds(map.getHeight() + 310, 45, 50, 25);
+	    boxCelluleAdjMin.setBounds(map.getHeight()+310, 45, 50, 25);
 	    
 	    JComboBox boxCelluleAdjMax = new JComboBox(box);
 	    boxCelluleAdjMax.setSelectedIndex(4);
 	    this.add(boxCelluleAdjMax);
-	    boxCelluleAdjMax.setBounds(map.getHeight() + 350, 45+60, 50, 25);
+	    boxCelluleAdjMax.setBounds(map.getHeight()+350, 105, 50, 25);
 	    
 	    JComboBox boxModeSurvie = new JComboBox();
 	    boxModeSurvie.addItem("true");
 	    boxModeSurvie.addItem("false");
 	    boxModeSurvie.setSelectedIndex(1);
 	    this.add(boxModeSurvie);
-	    boxModeSurvie.setBounds(map.getHeight() + 135, 45+ 60*2, 50, 25);
+	    boxModeSurvie.setBounds(map.getHeight()+135, 165, 50, 25);
 	    
 	    JComboBox boxcelluleAdjNaissance = new JComboBox(box);
 	    boxcelluleAdjNaissance.setSelectedIndex(0);
 	    this.add(boxcelluleAdjNaissance);
-	    boxcelluleAdjNaissance.setBounds(map.getHeight() + 350, 45+60*3, 50, 25);
+	    boxcelluleAdjNaissance.setBounds(map.getHeight()+350, 225, 50, 25);
 	    
 	    TextField inputSleep = new TextField(5);
 	    inputSleep.setText("30");
 	    this.add(inputSleep);
-	    inputSleep.setBounds(map.getHeight() + 300, 45 + 60*4, 50, 25);
+	    inputSleep.setBounds(map.getHeight()+300, 285, 50, 25);
 	    
 	    TextField inputBackgroundRed = new TextField("0", 5);
 	    this.add(inputBackgroundRed);
-	    inputBackgroundRed.setBounds(map.getHeight() + 140 + 70*0, 45 + 60*5, 50, 25);
+	    inputBackgroundRed.setBounds(map.getHeight()+140, 345, 50, 25);
 	    
 	    TextField inputBackgroundGreen = new TextField("0", 5);
 	    this.add(inputBackgroundGreen);
-	    inputBackgroundGreen.setBounds(map.getHeight() + 140 + 70*1, 45+60*5, 50, 25);
+	    inputBackgroundGreen.setBounds(map.getHeight()+210, 345, 50, 25);
 	    
 	    TextField inputBackgroundBlue = new TextField("0", 5);
 	    this.add(inputBackgroundBlue);
-	    inputBackgroundBlue.setBounds(map.getHeight() + 140 + 70*2, 45+60*5, 50, 25);
+	    inputBackgroundBlue.setBounds(map.getHeight()+280, 345, 50, 25);
 	    
 	    TextField inputTraitRed = new TextField("255", 5);
 	    inputTraitRed.setText("255");
 	    this.add(inputTraitRed);
-	    inputTraitRed.setBounds(map.getHeight() + 200 + 70*0, 45 + 60*6, 50, 25);
+	    inputTraitRed.setBounds(map.getHeight()+200, 405, 50, 25);
 	    
 	    TextField inputTraitGreen = new TextField("0", 5);
 	    this.add(inputTraitGreen);
-	    inputTraitGreen.setBounds(map.getHeight() + 200 + 70*1, 45+60*6, 50, 25);
+	    inputTraitGreen.setBounds(map.getHeight()+270, 405, 50, 25);
 
 	    TextField inputTraitBlue = new TextField("0", 5);
 	    this.add(inputTraitBlue);
-	    inputTraitBlue.setBounds(map.getHeight() + 200 + 70*2, 45+60*6, 50, 25);
+	    inputTraitBlue.setBounds(map.getHeight()+340, 405, 50, 25);
 	    
 	    JComboBox boxVitesseChangeColor = new JComboBox();
 	    boxVitesseChangeColor.addItem("0");
@@ -165,7 +167,7 @@ public class Cellule extends JPanel implements Observer{
 	    boxVitesseChangeColor.addItem("3");
 	    boxVitesseChangeColor.setSelectedIndex(1);
 	    this.add(boxVitesseChangeColor);
-	    boxVitesseChangeColor.setBounds(map.getHeight() + 245, 45+60*7, 50, 25);
+	    boxVitesseChangeColor.setBounds(map.getHeight()+245, 475, 50, 25);
 	    
 	    
 	    Button button = new Button("Activer l'automate");
@@ -173,9 +175,9 @@ public class Cellule extends JPanel implements Observer{
 			public void actionPerformed(ActionEvent arg0) {
 				map.setCelluleAdjMin(Integer.parseInt((String)boxCelluleAdjMin.getSelectedItem()));
 				map.setCelluleAdjMax(Integer.parseInt((String)boxCelluleAdjMax.getSelectedItem()));
-				if((String)boxModeSurvie.getSelectedItem() == "1") {
+				if((String)boxModeSurvie.getSelectedItem() == "true") {
 					map.setChoixSurvie(true);
-				}else if((String)boxModeSurvie.getSelectedItem() == "2"){
+				}else if((String)boxModeSurvie.getSelectedItem() == "false"){
 					map.setChoixSurvie(false);
 				}
 				map.setCelluleAdjNaissance(Integer.parseInt((String)boxcelluleAdjNaissance.getSelectedItem()));
@@ -187,12 +189,14 @@ public class Cellule extends JPanel implements Observer{
 				map.setGreenIntansity(Integer.parseInt(inputTraitGreen.getText()));
 				map.setBlueIntansity(Integer.parseInt(inputTraitBlue.getText()));
 				map.setShooseVitesseChangeColor(Integer.parseInt((String)boxVitesseChangeColor.getSelectedItem()));
-				
+				g.setColor(Color.BLACK);          
+				g.fillRect(0, 0, map.getHeight(), map.getHeight());
 				map.InstancierMap();
+				
 			}
 		});
 	    this.add(button);
-	    button.setBounds(map.getHeight() + 160, 45+60*8, 100, 25);
+	    button.setBounds(map.getHeight()+200, 545, 100, 25);
 	}
 
 	boolean[][] getBool() {
