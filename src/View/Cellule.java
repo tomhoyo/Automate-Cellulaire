@@ -25,25 +25,21 @@ public class Cellule extends JPanel implements Observer{
 	private boolean tabBool[][];
 	Color colorTrait;
 	int VitesseChangeColor;
-	int RedIntansity = 255, GreenIntansity, BlueIntansity; 
+	//int RedIntansity = 255, GreenIntansity, BlueIntansity; 
 	int x = 0;
 	public Cellule(Model map) {
 		
 		this.setLayout(null);
 		this.map = map;
-		this.BlueIntansity = map.getBlueIntansity();
+		/*this.BlueIntansity = map.getBlueIntansity();
 		this.GreenIntansity =  map.getGreenIntansity();
-		this.RedIntansity =  map.getRedIntansity();
+		this.RedIntansity =  map.getRedIntansity();*/
 		this.bool = new boolean[map.getHeight()][map.getHeight()];
 		this.tabBool = new boolean[map.getHeight()][map.getHeight()];
 		
 	}
 
-	public void paintComponent(Graphics g){ 
-		g.setColor(Color.BLACK); 
-	    g.fillRect(0, 0, map.getHeight(), map.getHeight());
-
-		
+	public void paintComponent(Graphics g){ 		
 		this.colorTrait = changeColor();
 		for(int y = 0; y <= map.getHeight()-1; y++) {
     		for(int x = 0; x <= map.getHeight()-1; x++) {
@@ -57,9 +53,7 @@ public class Cellule extends JPanel implements Observer{
 				}
 			}
     	} 
-	  
 
-		
 		g.setColor(new Color(237, 217, 137));          
 		g.fillRect(map.getHeight(),0,map.getHeight() + 400, map.getHeight());
 		g.setColor(Color.BLACK);
@@ -80,24 +74,36 @@ public class Cellule extends JPanel implements Observer{
 	}
 	
 	Color changeColor() {
-		if(this.RedIntansity==255 && this.GreenIntansity<255 && this.BlueIntansity==0) {
-			this.GreenIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
-		}else if(this.RedIntansity>0 && this.GreenIntansity==255 && this.BlueIntansity==0) {
-			this.RedIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
-		}else if(this.RedIntansity==0 && this.GreenIntansity==255 && this.BlueIntansity<255) {
-			this.BlueIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
-		}else if(this.RedIntansity==0 && this.GreenIntansity>0 && this.BlueIntansity==255) {
-			this.GreenIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
-		}else if(this.RedIntansity<255 && this.GreenIntansity==0 && this.BlueIntansity==255) {
-			this.RedIntansity+=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
-		}else if(this.RedIntansity==255 && this.GreenIntansity==0 && this.BlueIntansity>0) {
-			this.BlueIntansity-=this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()];
+		if(this.map.getRedIntansity()==255 && this.map.getGreenIntansity()<255 && this.map.getBlueIntansity()==0) {
+			this.map.setGreenIntansity(map.getGreenIntansity() + this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
+		}else if(this.map.getRedIntansity()>0 && this.map.getGreenIntansity()==255 && this.map.getBlueIntansity()==0) {
+			this.map.setRedIntansity(map.getRedIntansity() - this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
+		}else if(this.map.getRedIntansity()==0 && this.map.getGreenIntansity()==255 && this.map.getBlueIntansity()<255) {
+			this.map.setBlueIntansity(map.getBlueIntansity() + this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
+		}else if(this.map.getRedIntansity()==0 && this.map.getGreenIntansity()>0 && this.map.getBlueIntansity()==255) {
+			this.map.setGreenIntansity(map.getGreenIntansity() - this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
+		}else if(this.map.getRedIntansity()<255 && this.map.getGreenIntansity()==0 && this.map.getBlueIntansity()==255) {
+			this.map.setRedIntansity(map.getRedIntansity() + this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
+		}else if(this.map.getRedIntansity()==255 && this.map.getGreenIntansity()==0 && this.map.getBlueIntansity()>0) {
+			this.map.setBlueIntansity(map.getBlueIntansity() - this.map.getVitesseChangeColor()[map.getShooseVitesseChangeColor()]);
 		}
-		
-		return new Color(this.RedIntansity, this.GreenIntansity, this.BlueIntansity);
+		return new Color(this.map.getRedIntansity(), this.map.getGreenIntansity(), this.map.getBlueIntansity());
 	}
 	
 	public void createFormulaire(Graphics g) {
+		/*g.setColor(new Color(237, 217, 137));          
+		g.fillRect(map.getHeight(),0,map.getHeight() + 400, map.getHeight());
+		g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 16));
+		g.drawString("Minimum de Cellule adjacente pour la survie :", map.getHeight() + 20, 60); // 0 - 8
+		g.drawString("Maximum de Cellule adjacente pour avant la mort :", map.getHeight() + 20, 120); // 0 - 8
+		g.drawString("Mode de survie :", map.getHeight() + 20, 180); // boolean
+		g.drawString("Minimum de Cellule adjacente pour une naissance :", map.getHeight() + 20, 240); // 0 - 8
+		g.drawString("Temps d'attente entre chaque génération :", map.getHeight() + 20, 300); // 0 - infinit
+		g.drawString("Couleur de fond :", map.getHeight() + 20, 360); // rgb
+		g.drawString("Couleur RGB de départ :", map.getHeight() + 20, 420); // rgb
+		g.drawString("Vitesse de changement de couleur :", map.getHeight() + 20, 480); // 1 - 4*/
+		
 		String[] box = {"1", "2", "3", "4", "5", "6", "7", "8"};
 		
 		JComboBox boxCelluleAdjMin = new JComboBox(box);
